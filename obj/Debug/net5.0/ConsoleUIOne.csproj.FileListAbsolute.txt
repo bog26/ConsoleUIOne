@@ -1,0 +1,16 @@
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.csproj.AssemblyReference.cache
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.GeneratedMSBuildEditorConfig.editorconfig
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.AssemblyInfoInputs.cache
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.AssemblyInfo.cs
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.csproj.CoreCompileInputs.cache
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ConsoleUIOne.exe
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ConsoleUIOne.deps.json
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ConsoleUIOne.runtimeconfig.json
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ConsoleUIOne.runtimeconfig.dev.json
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ConsoleUIOne.dll
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ref\ConsoleUIOne.dll
+F:\C#\projects\2\ConsoleUIOne\bin\Debug\net5.0\ConsoleUIOne.pdb
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.dll
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ref\ConsoleUIOne.dll
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.pdb
+F:\C#\projects\2\ConsoleUIOne\obj\Debug\net5.0\ConsoleUIOne.genruntimeconfig.cache
