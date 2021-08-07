@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace ShellMenuNS
 {
-	//class FrameDisplay<FrameItemDisplay> // T => display object item
-	class FrameDisplay // T => display object item
+	class FrameDisplay 
     {
 		private int frameNr;
 		private int[] gridSize;//tuple?
@@ -14,7 +13,7 @@ namespace ShellMenuNS
 		private Dictionary<int,FrameItemDisplay> dynamicItemsDict;
 		private int cursorPosition;
 		private List<int> orderedKeys; 
-		private FrameItemDisplay crtDisplayItem; // == List<T>[cursorPosition] 
+		private FrameItemDisplay crtDisplayItem; 
 		private bool isDynamic;
 		public FrameDisplay()
 		{

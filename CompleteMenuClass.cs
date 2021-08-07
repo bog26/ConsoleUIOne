@@ -77,7 +77,6 @@ namespace ShellMenuNS
 			//Console.WriteLine("adding frame");
 			if(frame.IsDynamic == true)
 				{
-					//Console.WriteLine("frame nr "+frame.FrameNr+" is dynamic");
 					this.dynamicFrames.Add(frame);
 				}
 			this.crtDisplayFrame = this.displayFrames[0];
@@ -101,7 +100,6 @@ namespace ShellMenuNS
 		
 		public void DisplayCRTFrame()
 		{
-			//display outer frame
 			Console.Clear();
 			consoleDisplay.DisplayLabel(1,1,"FrameNr.: "+this.crtDisplayFrame.FrameNr.ToString());
 			ShowItemFrame();
@@ -219,7 +217,6 @@ namespace ShellMenuNS
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering default action");
 					break;
-
 			}
 		}
 
