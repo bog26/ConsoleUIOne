@@ -401,7 +401,6 @@ namespace ShellMenuNS
 			}
 			Console.WriteLine($"crtDisplayItem: {menu.CrtDisplayFrame.CrtDisplayItem.TextDisplay}");
 
-			
 			//menu.DisplayCRTFrame(); //ok
 			menu.UpdateFrame(); // ok
 		}
