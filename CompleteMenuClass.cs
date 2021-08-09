@@ -7,7 +7,7 @@ using IOMethNS;
 namespace ShellMenuNS
 {
 	
-	class CompleteMenu // T => display object item
+	class CompleteMenu:IMenu<FrameDisplay> // T => display object item
     {
 		private List<FrameDisplay> displayFrames;
 		private List<FrameDisplay> dynamicFrames;
