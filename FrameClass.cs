@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ShellMenuNS
 {
-	class FrameDisplay 
+	class FrameDisplay:IFrame<FrameItemDisplay> 
     {
 		private int frameNr;
 		private int[] gridSize;//tuple?
@@ -124,7 +124,7 @@ namespace ShellMenuNS
 			get{return this.isDynamic;}
 			set{this.isDynamic = value;}
 		}
-		Dictionary<int,FrameItemDisplay> SortItems(Dictionary<int,FrameItemDisplay> dict)
+		public Dictionary<int,FrameItemDisplay> SortItems(Dictionary<int,FrameItemDisplay> dict)
 		{
 			List<KeyValuePair<int,FrameItemDisplay>> sortedList = new List<KeyValuePair<int,FrameItemDisplay>>();
 			Dictionary<int,FrameItemDisplay> sortedDict = new Dictionary<int,FrameItemDisplay>();
