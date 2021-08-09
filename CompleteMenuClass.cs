@@ -7,11 +7,16 @@ using IOMethNS;
 namespace ShellMenuNS
 {
 	
-	class CompleteMenu:IMenu<FrameDisplay,FrameItemDisplay> // T => display object item
+	class CompleteMenu:IMenu<FrameDisplay,FrameItemDisplay>
+	//class CompleteMenu:IMenu<IFrame,FrameItemDisplay>
+	//class CompleteMenu:IMenu<IFrame<FrameItemDisplay>,FrameItemDisplay> // T => display object item
     {
 		private List<FrameDisplay> displayFrames;
+		//private List<IFrame<FrameItemDisplay>> displayFrames;
+		//private List<IFrame<FrameItemDisplay>> dynamicFrames;
 		private List<FrameDisplay> dynamicFrames;
-		private FrameDisplay crtDisplayFrame; // to be displayed 
+		//private IFrame<FrameItemDisplay> crtDisplayFrame; // to be displayed 
+		private FrameDisplay crtDisplayFrame;
 		
 		public CompleteMenu()
 		{
@@ -41,12 +46,14 @@ namespace ShellMenuNS
 		}
 
 		public List<FrameDisplay> DisplayFrames
+		//public List<IFrame> DisplayFrames
 		{
 			get{return this.displayFrames;}
 			set{this.displayFrames = value;}
 		}
 
 		public List<FrameDisplay> DynamicFrames
+		//public List<IFrame> DynamicFrames
 		{
 			get{return this.dynamicFrames;}
 			set{this.dynamicFrames = value;}

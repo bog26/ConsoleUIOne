@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ShellMenuNS
 {
 	
-	public class FrameItemDisplay
+	public class FrameItemDisplay:IFrameItem
     {
 		private int frameItemNr;
 		private string textDisplay;
