@@ -92,15 +92,6 @@ namespace ShellMenuNS
 			get{return this.readyForUpdate;}
 			set{this.readyForUpdate = value;}
 		}
-/*
-		public void TriggerAction()
-		{
-			if(this.isCrtDisplayItem == true)
-			{
-				Console.WriteLine("triggering action TBD");
-			}
-		}	
-*/
     }
 	class TestFrameItemDisplay
 	{

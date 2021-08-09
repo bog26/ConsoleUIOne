@@ -10,6 +10,7 @@ namespace ShellMenuNS
 		int Row {get;set;}
 		int[] GridPosition {get;set;}
 		bool IsCrtDisplayItem {get;set;}
+		bool IsDynamic {get;set;}
 		bool IsActionTrigger {get;}
 		int Link {get;}
 		bool ReadyForUpdate {get;set;}

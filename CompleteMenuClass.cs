@@ -7,35 +7,28 @@ using IOMethNS;
 namespace ShellMenuNS
 {
 	
-	class CompleteMenu:IMenu<FrameDisplay,FrameItemDisplay>
-	//class CompleteMenu:IMenu<IFrame,FrameItemDisplay>
-	//class CompleteMenu:IMenu<IFrame<FrameItemDisplay>,FrameItemDisplay> // T => display object item
+	
+	class CompleteMenu:IMenu<IFrame<IFrameItem>,IFrameItem>
     {
-		private List<FrameDisplay> displayFrames;
-		//private List<IFrame<FrameItemDisplay>> displayFrames;
-		//private List<IFrame<FrameItemDisplay>> dynamicFrames;
-		private List<FrameDisplay> dynamicFrames;
-		//private IFrame<FrameItemDisplay> crtDisplayFrame; // to be displayed 
-		private FrameDisplay crtDisplayFrame;
+		private List<IFrame<IFrameItem>> displayFrames;
+		private List<IFrame<IFrameItem>> dynamicFrames;
+		private IFrame<IFrameItem> crtDisplayFrame;
 		
 		public CompleteMenu()
 		{
-			//this.crtDisplayFrame = displayFrames[0];
 			this.crtDisplayFrame = null;
-			this.displayFrames = new List<FrameDisplay>();
-			this.dynamicFrames = new List<FrameDisplay>();
+			this.displayFrames = new List<IFrame<IFrameItem>>();
+			this.dynamicFrames = new List<IFrame<IFrameItem>>();
 		}
-		public CompleteMenu(int crtFrameIndex, List<FrameDisplay> dispFrames)
+		public CompleteMenu(int crtFrameIndex, List<IFrame<IFrameItem>> dispFrames)
 		{
-			
-			//this.crtDisplayFrame = displayFrames[crtFrameIndex];
-			this.displayFrames = new List<FrameDisplay>();
-			foreach(FrameDisplay item in dispFrames)
+			this.displayFrames = new List<IFrame<IFrameItem>>();
+			foreach(IFrame<IFrameItem> item in dispFrames)
 			{
 				this.displayFrames.Add(item);
 			}
-			this.dynamicFrames = new List<FrameDisplay>();
-			foreach(FrameDisplay item in dispFrames)
+			this.dynamicFrames = new List<IFrame<IFrameItem>>();
+			foreach(IFrame<IFrameItem> item in dispFrames)
 			{
 				if(item.IsDynamic == true)
 				{
@@ -44,41 +37,35 @@ namespace ShellMenuNS
 			}
 			this.crtDisplayFrame = this.displayFrames[crtFrameIndex];
 		}
-
-		public List<FrameDisplay> DisplayFrames
-		//public List<IFrame> DisplayFrames
+		public List<IFrame<IFrameItem>> DisplayFrames
 		{
 			get{return this.displayFrames;}
 			set{this.displayFrames = value;}
 		}
-
-		public List<FrameDisplay> DynamicFrames
-		//public List<IFrame> DynamicFrames
+		public List<IFrame<IFrameItem>> DynamicFrames
 		{
 			get{return this.dynamicFrames;}
 			set{this.dynamicFrames = value;}
 		}
-		
-		public FrameDisplay CrtDisplayFrame
+		public IFrame<IFrameItem> CrtDisplayFrame
 		{
 			get{return this.crtDisplayFrame;}
 			set{this.crtDisplayFrame = value;}
 		}
-		public static List<FrameDisplay> ReadFramesFromJsonFile()
+		public static List<IFrame<IFrameItem>> ReadFramesFromJsonFile()
 		{
-			List<FrameDisplay> frameList = new List<FrameDisplay>();
-			//frameList.Add(frame);
+			List<IFrame<IFrameItem>> frameList = new List<IFrame<IFrameItem>>();
 			return frameList;
 		}
 
-		public void ConstructFrameList(List<FrameDisplay> dispFrames)
+		public void ConstructFrameList(List<IFrame<IFrameItem>> dispFrames)
 		{
-			foreach(FrameDisplay item in dispFrames)
+			foreach(IFrame<IFrameItem> item in dispFrames)
 			{
 				this.displayFrames.Add(item);
 			}
 		}
-		public void AddFrame(FrameDisplay frame)
+		public void AddFrame(IFrame<IFrameItem> frame)
 		{
 			this.displayFrames.Add(frame);
 			//Console.WriteLine("adding frame");
@@ -110,7 +97,7 @@ namespace ShellMenuNS
 			Console.Clear();
 			consoleDisplay.DisplayLabel(1,1,"FrameNr.: "+this.crtDisplayFrame.FrameNr.ToString());
 			ShowItemFrame();
-			foreach(KeyValuePair<int,FrameItemDisplay> pair in this.crtDisplayFrame.DisplayItemsDict)
+			foreach(KeyValuePair<int,IFrameItem> pair in this.crtDisplayFrame.DisplayItemsDict)
 			{
 				consoleDisplay.DisplayLabel(pair.Value.Column, pair.Value.Row, pair.Value.TextDisplay);
 			}			
@@ -175,7 +162,7 @@ namespace ShellMenuNS
                     break;
 				}
 		}
-		public int ActionOnEnter(FrameItemDisplay FrameItem, int OrderedKeysCrtIndex)
+		public int ActionOnEnter(IFrameItem FrameItem, int OrderedKeysCrtIndex)
 		{
 			if(FrameItem.IsActionTrigger)
 			{
@@ -185,7 +172,7 @@ namespace ShellMenuNS
 			else
 			{
 				int FrameNrToDisplay =this.crtDisplayFrame.CrtDisplayItem.Link;
-				foreach(FrameDisplay frame in this.displayFrames)
+				foreach(IFrame<IFrameItem> frame in this.displayFrames)
 				{
 					if(frame.FrameNr == FrameNrToDisplay)
 					{
@@ -229,9 +216,9 @@ namespace ShellMenuNS
 
     }
 
-
 	class TestCompleteMenu
 	{
+		/*
 		public static void CompleteMenuTesting() //creates complete menu from json, >> issue
 		{
 			Console.WriteLine("please insert directory!");
@@ -248,6 +235,7 @@ namespace ShellMenuNS
 			string JsonFrameObjString3 = File.ReadAllText(frameFiles[2]);
 			string JsonFrameObjString4 = File.ReadAllText(frameFiles[3]);
 			string[] jsonStrings = new string[]{JsonFrameObjString1,JsonFrameObjString2,JsonFrameObjString3,JsonFrameObjString4};
+			//List<FrameDisplay> framesList = new List<FrameDisplay>();
 			List<FrameDisplay> framesList = new List<FrameDisplay>();
 			//CompleteMenu menu0 = new CompleteMenu();
 			foreach(string json in jsonStrings)
@@ -289,10 +277,12 @@ namespace ShellMenuNS
 		{
 
 		}
-		public static Dictionary<int,FrameItemDisplay> ConstructItemsDict()
+
+		*/
+		public static Dictionary<int,IFrameItem> ConstructItemsDict()
 		{
 			Console.WriteLine("constructing display items");
-			Dictionary<int,FrameItemDisplay> itemsListDict = new Dictionary<int,FrameItemDisplay>();
+			Dictionary<int,IFrameItem> itemsListDict = new Dictionary<int,IFrameItem>();
 			FrameItemDisplay item;
 			item = new FrameItemDisplay(1,"LabelOne",1,4,false,true,1);
 			itemsListDict.Add(item.FrameItemNr,item);
@@ -320,13 +310,14 @@ namespace ShellMenuNS
 
 			return itemsListDict;
 		}
-		public static List<FrameDisplay> ConstructFramesDict()
+		
+		public static List<IFrame<IFrameItem>> ConstructFramesDict()
 		{
 			Console.WriteLine("constructing frames");
-			List<FrameDisplay> framesList = new List<FrameDisplay>();
-			Dictionary<int,FrameItemDisplay> completeItemsDict = new Dictionary<int, FrameItemDisplay>();
+			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
+			Dictionary<int,IFrameItem> completeItemsDict = new Dictionary<int, IFrameItem>();
 			completeItemsDict = ConstructItemsDict();
-			Dictionary<int,FrameItemDisplay> itemsDictframe = new Dictionary<int, FrameItemDisplay>();
+			Dictionary<int,IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
 			
 			FrameDisplay frame1;
 			int crtItemKey=1;
@@ -377,25 +368,23 @@ namespace ShellMenuNS
 			frame4 = new FrameDisplay(4,10,10,itemsDictframe,1);
 			itemsDictframe.Clear();
 			framesList.Add(frame4);
-
-
 			//FrameDisplay frame = new FrameDisplay(1,10,10,itemsDict);
 
 			return framesList;
 		}
+
+		
+		
 		public static void ConstructMenuDict()
 		{
 			Console.WriteLine("Constructing menu object");
-			List<FrameDisplay> framesList;
+			List<IFrame<IFrameItem>> framesList;
 			framesList = ConstructFramesDict();
-
 			Console.WriteLine("Running tests:");
 			Console.WriteLine($"framesList has {framesList.Count} frames");
 			Console.WriteLine($"{framesList[1].DisplayItemsDict[5].Row}");
 			Console.WriteLine($"{framesList[0].DisplayItemsDict[2].IsActionTrigger}");
-
 			CompleteMenu menu = new CompleteMenu(0,framesList);
-
 			Console.WriteLine($"\nRunning tests for complete menu, current frame: {menu.CrtDisplayFrame.FrameNr}");
 			Console.WriteLine($"menu has {menu.DisplayFrames.Count} frames");
 			Console.WriteLine($"{menu.DisplayFrames[1].DisplayItemsDict[5].Row}");

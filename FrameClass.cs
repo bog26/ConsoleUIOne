@@ -3,17 +3,19 @@ using System.Collections.Generic;
 
 namespace ShellMenuNS
 {
-	class FrameDisplay:IFrame<FrameItemDisplay> 
+	class FrameDisplay:IFrame<IFrameItem> 
     {
 		private int frameNr;
 		private int[] gridSize;//tuple?
-		private List<FrameItemDisplay> displayItems;
-		private List<FrameItemDisplay> dynamicItems;
-		private Dictionary<int,FrameItemDisplay> displayItemsDict;
-		private Dictionary<int,FrameItemDisplay> dynamicItemsDict;
+		private List<IFrameItem> displayItems;
+		private List<IFrameItem> dynamicItems;
+		private Dictionary<int,IFrameItem> displayItemsDict;
+		private Dictionary<int,IFrameItem> dynamicItemsDict;
+
 		private int cursorPosition;
 		private List<int> orderedKeys; 
-		private FrameItemDisplay crtDisplayItem; 
+		private IFrameItem crtDisplayItem;
+
 		private bool isDynamic;
 		public FrameDisplay()
 		{
@@ -27,21 +29,22 @@ namespace ShellMenuNS
 			this.cursorPosition = 0;
 			this.isDynamic = false;
 			this.gridSize = new int[]{rows,cols};
-			this.displayItems = new List<FrameItemDisplay>() ;
+			this.displayItems = new List<IFrameItem>() ;
+
 		}
-		public FrameDisplay(int frameNr,int rows, int cols, List<FrameItemDisplay> dispItems)
+		public FrameDisplay(int frameNr,int rows, int cols, List<IFrameItem> dispItems)		
 		{
 			this.frameNr = frameNr;
 			this.cursorPosition = 0;
 			this.isDynamic = false;
 			this.gridSize = new int[]{rows,cols};
-			this.displayItems = new List<FrameItemDisplay>() ;
-			foreach(FrameItemDisplay item in dispItems)
+			this.displayItems = new List<IFrameItem>() ;
+			foreach(IFrameItem item in dispItems)
 			{
 				this.displayItems.Add(item);
 			}
 			this.crtDisplayItem = dispItems[cursorPosition];
-			foreach(FrameItemDisplay item in dispItems)
+			foreach(IFrameItem item in dispItems)
 			{
 				if(item.IsDynamic)
 				{
@@ -50,22 +53,19 @@ namespace ShellMenuNS
 				}
 			}
 		}
-		public FrameDisplay(int frameNr,int rows, int cols, Dictionary<int,FrameItemDisplay> dispItemsD, int activeItemKey)
+		public FrameDisplay(int frameNr,int rows, int cols, Dictionary<int,IFrameItem> dispItemsD, int activeItemKey)	
 		{
 			this.frameNr = frameNr;
 			this.isDynamic = false;
 			this.gridSize = new int[]{rows,cols};
 			this.cursorPosition = 0;
-			//this.displayItems = new List<FrameItemDisplay>() ;
-			this.displayItemsDict = new Dictionary<int, FrameItemDisplay>();
-			//sort dispItemsD
-			Dictionary<int, FrameItemDisplay> dispItemsDSorted = SortItems(dispItemsD);
-			foreach(KeyValuePair<int,FrameItemDisplay> pair in dispItemsDSorted)
+			this.displayItemsDict = new Dictionary<int, IFrameItem>();
+			Dictionary<int, IFrameItem> dispItemsDSorted = SortItems(dispItemsD);
+			foreach(KeyValuePair<int,IFrameItem> pair in dispItemsDSorted)
 			{
 				this.displayItemsDict.Add(pair.Key, pair.Value);
-				//this.cursorPosition = pair.Key;//??
 			}
-			foreach(KeyValuePair<int,FrameItemDisplay> pair in dispItemsDSorted)
+			foreach(KeyValuePair<int,IFrameItem> pair in dispItemsDSorted)
 			{
 				if(pair.Value.IsDynamic)
 				{
@@ -91,12 +91,12 @@ namespace ShellMenuNS
 			set{this.gridSize = value;}
 		}
 
-		public List<FrameItemDisplay> DisplayItems
+		public List<IFrameItem> DisplayItems
 		{
 			get{return this.displayItems;}
 			set{this.displayItems = value;}
 		}
-		public Dictionary<int,FrameItemDisplay> DisplayItemsDict
+		public Dictionary<int,IFrameItem> DisplayItemsDict
 		{
 			get{return this.displayItemsDict;}
 			set{this.displayItemsDict = value;}
@@ -113,8 +113,7 @@ namespace ShellMenuNS
 			get{return this.orderedKeys;}
 			set{this.orderedKeys = value;}
 		}
-
-		public FrameItemDisplay CrtDisplayItem
+		public IFrameItem CrtDisplayItem
 		{
 			get{return this.crtDisplayItem;}
 			set{this.crtDisplayItem = value;}
@@ -124,20 +123,20 @@ namespace ShellMenuNS
 			get{return this.isDynamic;}
 			set{this.isDynamic = value;}
 		}
-		public Dictionary<int,FrameItemDisplay> SortItems(Dictionary<int,FrameItemDisplay> dict)
+		public Dictionary<int,IFrameItem> SortItems(Dictionary<int,IFrameItem> dict)
 		{
-			List<KeyValuePair<int,FrameItemDisplay>> sortedList = new List<KeyValuePair<int,FrameItemDisplay>>();
-			Dictionary<int,FrameItemDisplay> sortedDict = new Dictionary<int,FrameItemDisplay>();
-			foreach(KeyValuePair<int,FrameItemDisplay> pair in dict)
+			List<KeyValuePair<int,IFrameItem>> sortedList = new List<KeyValuePair<int,IFrameItem>>();
+			Dictionary<int,IFrameItem> sortedDict = new Dictionary<int,IFrameItem>();
+			foreach(KeyValuePair<int,IFrameItem> pair in dict)
 			{
 				sortedList.Add(pair);
 			}
-			KeyValuePair<int,FrameItemDisplay> temp;
+			KeyValuePair<int,IFrameItem> temp;
 			for (int j=0; j<sortedList.Count; j++)
 			{
 				for(int i=j; i<sortedList.Count; i++)
 				{
-					if(sortedList[i].Value.Row ==sortedList[j].Value.Row )
+					if(sortedList[i].Value.Row == sortedList[j].Value.Row )
 					{
 						if(sortedList[i].Value.Column < sortedList[j].Value.Column)
 						{
@@ -157,14 +156,13 @@ namespace ShellMenuNS
 					}
 				}
 			}
-			foreach(KeyValuePair<int,FrameItemDisplay> pair in sortedList)
+			foreach(KeyValuePair<int,IFrameItem> pair in sortedList)
 			{
 				sortedDict.Add(pair.Key,pair.Value);
 			}
 			return sortedDict;
 		}
-		
-		public void UpdateFrameItem(FrameItemDisplay item)
+		public void UpdateFrameItem(IFrameItem item)
 		{
 			if (item.IsDynamic==true && item.ReadyForUpdate==true)
 			{

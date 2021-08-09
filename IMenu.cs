@@ -7,6 +7,7 @@ namespace ShellMenuNS
 		List<T> DisplayFrames {get;set;}
 		List<T> DynamicFrames {get;set;}
 		T CrtDisplayFrame {get;set;}
+		
 		void UpdateFrame();
 		void DisplayCRTFrame();
 		void ShowItemFrame();
