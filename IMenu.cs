@@ -1,12 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text.Json;
-using IOMethNS;
+﻿using System.Collections.Generic;
 
 namespace ShellMenuNS
 {
-	
 	public interface IMenu<T,U> 
     {
 		List<T> DisplayFrames {get;set;}
