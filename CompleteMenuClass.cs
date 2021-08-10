@@ -190,8 +190,7 @@ namespace ShellMenuNS
 				case 1:
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering action 1");
-					Console.WriteLine("showing current directory");
-					Actions.ShowCrtDirectory();
+					Actions.ReadMenuTextLines(",", "ItemsDataFile.txt");
 					break;
 				case 2:
 					Console.SetCursorPosition(0,31);
