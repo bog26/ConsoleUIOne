@@ -190,6 +190,7 @@ namespace ShellMenuNS
 				case 1:
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering action 1");
+					Actions.ShowCrtDirectory();
 					break;
 				case 2:
 					Console.SetCursorPosition(0,31);
