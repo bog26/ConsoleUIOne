@@ -14,6 +14,11 @@ namespace ShellMenuNS
 		bool IsActionTrigger {get;}
 		int Link {get;}
 		bool ReadyForUpdate {get;set;}
+		Dictionary<int,IFrameItem> ConstructSortedItemsDict();
+		Dictionary<int,IFrameItem> ReadItemsFile();
+		Dictionary<int,IFrameItem> SortItems(Dictionary<int,IFrameItem> unsortedDict);
+
+
     }
 }
 

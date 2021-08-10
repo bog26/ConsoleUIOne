@@ -92,6 +92,63 @@ namespace ShellMenuNS
 			get{return this.readyForUpdate;}
 			set{this.readyForUpdate = value;}
 		}
+		public Dictionary<int,IFrameItem> ConstructSortedItemsDict()
+		{
+			Dictionary<int,IFrameItem> unSortedDict = new Dictionary<int,IFrameItem>();
+			Dictionary<int,IFrameItem> sortedDict = new Dictionary<int,IFrameItem>();
+			unSortedDict = ReadItemsFile();
+			sortedDict = SortItems(unSortedDict);
+			return sortedDict;
+		}
+		public Dictionary<int,IFrameItem> ReadItemsFile() // reads a file containig items data, returns a dictionary
+		{
+			Dictionary<int,IFrameItem> itemsDict = new Dictionary<int,IFrameItem>();
+			//TBD: reads a file containig items data, returns a dictionary
+
+			return itemsDict;
+		}
+
+		public Dictionary<int,IFrameItem> SortItems(Dictionary<int,IFrameItem> unsortedDict) // reads a file containig items data, returns a dictionary
+		{
+			Dictionary<int,IFrameItem> SortedItemsDict = new Dictionary<int,IFrameItem>();
+			List<KeyValuePair<int,IFrameItem>> sortedList = new List<KeyValuePair<int,IFrameItem>>();
+			Dictionary<int,IFrameItem> sortedDict = new Dictionary<int,IFrameItem>();
+			foreach(KeyValuePair<int,IFrameItem> pair in unsortedDict)
+			{
+				sortedList.Add(pair);
+			}
+			KeyValuePair<int,IFrameItem> temp;
+			for (int j=0; j<sortedList.Count; j++)
+			{
+				for(int i=j; i<sortedList.Count; i++)
+				{
+					if(sortedList[i].Value.Row == sortedList[j].Value.Row )
+					{
+						if(sortedList[i].Value.Column < sortedList[j].Value.Column)
+						{
+							temp = sortedList[i];
+							sortedList[i] = sortedList[j];
+							sortedList[j] = temp;
+						}
+					}
+					else
+					{
+						if(sortedList[i].Value.Row < sortedList[j].Value.Row)
+						{
+							temp = sortedList[i];
+							sortedList[i] = sortedList[j];
+							sortedList[j] = temp;
+						}
+					}
+				}
+			}
+			foreach(KeyValuePair<int,IFrameItem> pair in sortedList)
+			{
+				sortedDict.Add(pair.Key,pair.Value);
+			}
+			
+			return SortedItemsDict;
+		}
     }
 	class TestFrameItemDisplay
 	{
