@@ -104,6 +104,7 @@ namespace ShellMenuNS
 		{
 			Dictionary<int,IFrameItem> itemsDict = new Dictionary<int,IFrameItem>();
 			//TBD: reads a file containig items data, returns a dictionary
+			//string path = Directory.GetCurrentDirectory();
 
 			return itemsDict;
 		}

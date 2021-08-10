@@ -190,11 +190,14 @@ namespace ShellMenuNS
 				case 1:
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering action 1");
+					Console.WriteLine("showing current directory");
 					Actions.ShowCrtDirectory();
 					break;
 				case 2:
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering action 2");
+					Console.WriteLine("reading complete file");
+					Actions.ReadMenuFile();
 					break;
 				case 3:
 					Console.SetCursorPosition(0,31);
@@ -203,10 +206,13 @@ namespace ShellMenuNS
 				case 4:
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering action 4");
+					Console.WriteLine("Reading lines one by one");
+					Actions.ReadMenuFileLines();
 					break;
 				case 5:
 					Console.SetCursorPosition(0,31);
 					Console.WriteLine("triggering action 5");
+					
 					break;
 				default:
 					Console.SetCursorPosition(0,31);
