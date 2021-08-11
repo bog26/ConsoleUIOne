@@ -128,9 +128,11 @@ namespace ShellMenuNS
                 Console.WriteLine("finished");
             }
         }
-        static public Dictionary<int, IFrameItem> ParseItemList(List<string[]> ItemList)
+        //static public Dictionary<int, IFrameItem> ParseItemList(List<string[]> ItemList)
+		static public Dictionary<int, IFrameItem> ParseItemList()
         {
             Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();
+			List<string[]> ItemList = ReadMenuTextLines(",", "ItemsDataFile.txt");
             foreach (string[] textsArray in ItemList)
             {
                 int itemNr, posCol, posRow, link;
@@ -150,10 +152,36 @@ namespace ShellMenuNS
             return allItemsDict;
 
         }
-		static public List<IFrame<IFrameItem>> ParseFrameList(Dictionary<int, IFrameItem> frameItemsDict)
+		//static public List<IFrame<IFrameItem>> ParseFrameList(Dictionary<int, IFrameItem> frameItemsDict)
+		static public List<IFrame<IFrameItem>> ParseFrameList()
         {
 			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
-			//TBD
+			Dictionary<int, IFrameItem> allItemsDict = ParseItemList();
+			List<string[]> readFramesList = ReadMenuTextLines(",", "FramesDataFile.txt");
+			foreach (string[] frameParams in readFramesList)
+            {
+				int frameNr, rows,  cols,  activeItemKey; //first four elements from frameParams
+				int[] frameItemKeys = new int[frameParams.Length-4]; //next elements will form an int[]
+				Dictionary<int,IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
+				int.TryParse(frameParams[0], out frameNr);
+				int.TryParse(frameParams[1], out rows);
+				int.TryParse(frameParams[2], out cols);
+				int.TryParse(frameParams[3], out activeItemKey);
+
+				for(int i=0; i<frameItemKeys.Length;i++)
+				{
+					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
+				}
+
+				foreach(int key in frameItemKeys)
+				{
+					itemsDictframe.Add(key,allItemsDict[key]);
+				} 
+				
+				IFrame<IFrameItem> frame = new FrameDisplay(frameNr, rows, cols, itemsDictframe, activeItemKey);
+				framesList.Add(frame);
+				itemsDictframe.Clear();
+			}
 
 			return framesList;
 		}
