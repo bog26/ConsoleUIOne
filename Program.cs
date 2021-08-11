@@ -16,6 +16,7 @@ using IOMethNS;
 //using  learningNS;
 //using DataStr;
 
+//https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/create
 
 namespace ConsoleUIOne
 {

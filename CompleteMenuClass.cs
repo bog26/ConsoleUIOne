@@ -289,7 +289,7 @@ namespace ShellMenuNS
 		{
 			Console.WriteLine("constructing display items");
 			Dictionary<int,IFrameItem> itemsListDict = new Dictionary<int,IFrameItem>();
-			FrameItemDisplay item;
+			IFrameItem item;
 			item = new FrameItemDisplay(1,"LabelOne",1,4,false,true,1);
 			itemsListDict.Add(item.FrameItemNr,item);
 			item = new FrameItemDisplay(2,"LabelTwo",4,4,false,false,3);
