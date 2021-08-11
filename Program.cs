@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 //using System.Math;
 //using static test.TestingImport;
 //using Objects;
@@ -22,14 +23,28 @@ namespace ConsoleUIOne
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //jsonMenuTesting.testConstructObjFromJsonFile();
             //TestCompleteMenu.CompleteMenuTesting();
             //TestCompleteMenu.ConstructMenu();
             //TestCompleteMenu.SortItems();
             //consoleDisplayTesting.CompleteFrame();
-            TestCompleteMenu.ConstructMenuDict();
+            //TestCompleteMenu.ConstructMenuDict(); //ok
+            //not ok:
+            CompleteMenu menu = MenuInstantiation.Instance;
+            
+            menu.UpdateFrame();
+            //MenuTesting(menu);
+           
+            
         }
+        public static void MenuTesting(CompleteMenu menu)
+        {
+            //menu.DisplayCRTFrame();
+            //Console.WriteLine(menu.DisplayFrames[0].DisplayItems[0].FrameItemNr);
+        }
+        
+
     }
 }

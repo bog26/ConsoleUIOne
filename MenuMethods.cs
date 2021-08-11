@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace ShellMenuNS
 {
-    class Actions
+    public class Actions
     {
         static public void ShowCrtDirectory()
         {
@@ -131,6 +131,7 @@ namespace ShellMenuNS
         //static public Dictionary<int, IFrameItem> ParseItemList(List<string[]> ItemList)
 		static public Dictionary<int, IFrameItem> ParseItemList()
         {
+			Console.WriteLine("parsing item list file");
             Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();
 			List<string[]> ItemList = ReadMenuTextLines(",", "ItemsDataFile.txt");
             foreach (string[] textsArray in ItemList)
@@ -145,7 +146,7 @@ namespace ShellMenuNS
 				int.TryParse(textsArray[3], out posRow);
 				bool.TryParse(textsArray[4], out dyn);
 				bool.TryParse(textsArray[5], out actTrig);
-				int.TryParse(textsArray[3], out link);
+				int.TryParse(textsArray[6], out link);
 				IFrameItem item = new FrameItemDisplay(itemNr, labelText, posCol, posRow, dyn, actTrig, link);
 				allItemsDict.Add(item.FrameItemNr,item);
             }
@@ -157,6 +158,7 @@ namespace ShellMenuNS
         {
 			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
 			Dictionary<int, IFrameItem> allItemsDict = ParseItemList();
+			Console.WriteLine("parsing frame list file");
 			List<string[]> readFramesList = ReadMenuTextLines(",", "FramesDataFile.txt");
 			foreach (string[] frameParams in readFramesList)
             {
@@ -177,7 +179,7 @@ namespace ShellMenuNS
 				{
 					itemsDictframe.Add(key,allItemsDict[key]);
 				} 
-				
+
 				IFrame<IFrameItem> frame = new FrameDisplay(frameNr, rows, cols, itemsDictframe, activeItemKey);
 				framesList.Add(frame);
 				itemsDictframe.Clear();

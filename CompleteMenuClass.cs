@@ -8,7 +8,7 @@ namespace ShellMenuNS
 {
 	
 	
-	class CompleteMenu:IMenu<IFrame<IFrameItem>,IFrameItem>
+	public class CompleteMenu:IMenu<IFrame<IFrameItem>,IFrameItem>
     {
 		private List<IFrame<IFrameItem>> displayFrames;
 		private List<IFrame<IFrameItem>> dynamicFrames;
