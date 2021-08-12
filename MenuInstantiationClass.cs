@@ -6,7 +6,8 @@ namespace ShellMenuNS
 {
 	public static class MenuInstantiation
     {
-		public static CompleteMenu Instance {get;} = new CompleteMenu(0,Actions.ParseFrameList());
+      public const string file = "FramesDataFile.txt";
+		  public static CompleteMenu Instance {get;} = new CompleteMenu(0,Actions.ParseFrameList(file));
     }
 }
 

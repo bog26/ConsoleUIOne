@@ -154,12 +154,13 @@ namespace ShellMenuNS
 
         }
 		//static public List<IFrame<IFrameItem>> ParseFrameList(Dictionary<int, IFrameItem> frameItemsDict)
-		static public List<IFrame<IFrameItem>> ParseFrameList()
+		
+        static public List<IFrame<IFrameItem>> ParseFrameList(string file)
         {
-			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
-			Dictionary<int, IFrameItem> allItemsDict = ParseItemList();
 			Console.WriteLine("parsing frame list file");
-			List<string[]> readFramesList = ReadMenuTextLines(",", "FramesDataFile.txt");
+			//List<string[]> readFramesList = ReadMenuTextLines(",", file);
+            List<string[]> readFramesList = ReadMenuTextLines(",", file);
+			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();;
 			foreach (string[] frameParams in readFramesList)
             {
 				int frameNr, rows,  cols,  activeItemKey; //first four elements from frameParams
@@ -169,12 +170,12 @@ namespace ShellMenuNS
 				int.TryParse(frameParams[1], out rows);
 				int.TryParse(frameParams[2], out cols);
 				int.TryParse(frameParams[3], out activeItemKey);
-
+				
 				for(int i=0; i<frameItemKeys.Length;i++)
 				{
 					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
 				}
-
+				Dictionary<int, IFrameItem> allItemsDict = ParseItemList();
 				foreach(int key in frameItemKeys)
 				{
 					itemsDictframe.Add(key,allItemsDict[key]);
