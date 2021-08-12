@@ -31,9 +31,7 @@ namespace ConsoleUIOne
             //TestCompleteMenu.SortItems();
             //consoleDisplayTesting.CompleteFrame();
             //TestCompleteMenu.ConstructMenuDict(); //ok
-            //not ok:
             CompleteMenu menu = MenuInstantiation.Instance;
-            
             menu.UpdateFrame();
             //MenuTesting(menu);
            
