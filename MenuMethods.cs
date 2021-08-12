@@ -129,11 +129,11 @@ namespace ShellMenuNS
             }
         }
         //static public Dictionary<int, IFrameItem> ParseItemList(List<string[]> ItemList)
-		static public Dictionary<int, IFrameItem> ParseItemList()
+		static public Dictionary<int, IFrameItem> ParseItemList(string ItemListFile)
         {
 			Console.WriteLine("parsing item list file");
             Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();
-			List<string[]> ItemList = ReadMenuTextLines(",", "ItemsDataFile.txt");
+			List<string[]> ItemList = ReadMenuTextLines(",", ItemListFile);
             foreach (string[] textsArray in ItemList)
             {
                 int itemNr, posCol, posRow, link;
@@ -155,11 +155,11 @@ namespace ShellMenuNS
         }
 		//static public List<IFrame<IFrameItem>> ParseFrameList(Dictionary<int, IFrameItem> frameItemsDict)
 		
-        static public List<IFrame<IFrameItem>> ParseFrameList(string file)
+        static public List<IFrame<IFrameItem>> ParseFrameList(string frameFile, string itemsFile)
         {
 			Console.WriteLine("parsing frame list file");
 			//List<string[]> readFramesList = ReadMenuTextLines(",", file);
-            List<string[]> readFramesList = ReadMenuTextLines(",", file);
+            List<string[]> readFramesList = ReadMenuTextLines(",", frameFile);
 			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();;
 			foreach (string[] frameParams in readFramesList)
             {
@@ -175,7 +175,7 @@ namespace ShellMenuNS
 				{
 					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
 				}
-				Dictionary<int, IFrameItem> allItemsDict = ParseItemList();
+				Dictionary<int, IFrameItem> allItemsDict = ParseItemList(itemsFile);
 				foreach(int key in frameItemKeys)
 				{
 					itemsDictframe.Add(key,allItemsDict[key]);
@@ -188,7 +188,14 @@ namespace ShellMenuNS
 
 			return framesList;
 		}
+/*
+        static public IFrame<IFrameItem> ConstructFrameFromLine()
+        {
+            IFrame<IFrameItem> frame;
 
+            return frame;
+        } 
+*/
 
 
         public static string[] stringSplit(string text)
