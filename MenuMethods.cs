@@ -165,7 +165,7 @@ namespace ShellMenuNS
             {
 				int frameNr, rows,  cols,  activeItemKey; //first four elements from frameParams
 				int[] frameItemKeys = new int[frameParams.Length-4]; //next elements will form an int[]
-				Dictionary<int,IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
+				
 				int.TryParse(frameParams[0], out frameNr);
 				int.TryParse(frameParams[1], out rows);
 				int.TryParse(frameParams[2], out cols);
@@ -176,6 +176,7 @@ namespace ShellMenuNS
 					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
 				}
 				Dictionary<int, IFrameItem> allItemsDict = ParseItemList(itemsFile);
+                Dictionary<int, IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
 				foreach(int key in frameItemKeys)
 				{
 					itemsDictframe.Add(key,allItemsDict[key]);
