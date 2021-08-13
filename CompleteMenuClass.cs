@@ -200,7 +200,7 @@ namespace ShellMenuNS
 					break;
 				case 3:
 					Console.SetCursorPosition(0,31);
-					Console.WriteLine("triggering action 3");
+					Console.WriteLine("Delegates TBD");
 					break;
 				case 4:
 					Console.SetCursorPosition(0,31);

@@ -206,6 +206,9 @@ namespace ShellMenuNS
             return textArr;
         }
 
+        //delegates practice here
+        
+
 
     }
 }
