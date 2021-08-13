@@ -1,0 +1,11 @@
+*    <<ReadMe>>
+* This is a menu data file containing frames information
+* - comment lines start with the character "*" and will not be taken into account for the program execution
+* - all other lines will be used for construction of menu objects
+* - it can be manually written/modified by user, or by other program module
+* - lines should be introduced in the this form: || int frameNr,int rows, int cols, int activeItemKey, ItemKey1, ItemKey2,..,ItemKeyN ||
+* - Ex: <<  1,10,10,1, 1,2,3  >>
+1,10,10,1, 1,2,3
+2,10,10,4, 2,4,5,8
+3,10,10,1, 1,6,7,8
+4,10,10,1, 1,8,9, 10

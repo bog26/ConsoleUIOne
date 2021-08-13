@@ -1,0 +1,17 @@
+*    <<ReadMe>>
+* This is a menu data file containing frames information
+* - comment lines start with the character "*" and will not be taken into account for the program execution
+* - all other lines will be used for construction of menu objects
+* - it can be manually written/modified by user, or by other program module
+* - lines should be introduced in the this form: << int ItemNr, string text, int posCol, int posRow, bool dyn, bool actTrig, int lnk  >>
+* - Ex: << 1,"LabelOne",1,4,false,true,1 >>
+1,"LabelOne",1,4,false,true,1
+2,"LabelTwo",4,4,false,false,3
+3,"LabelThree",8,4,false,false,2
+4,"LabelFour",1,4,false,false,4
+5,"LabelFive",8,4,false,true,2
+6,"LabelSix",4,1,false,true,4
+7,"LabelSeven",8,1,false,true,5
+8,"LabelEight",8,8,false,false,1
+9,"LabelNine",1,8,false,false,3
+10,"LabelTen",4,8,false, true, 3
