@@ -200,16 +200,24 @@ namespace ShellMenuNS
 				allItemsDict.Add(item.FrameItemNr,item);
             }
             return allItemsDict;
-
         }
 		//static public List<IFrame<IFrameItem>> ParseFrameList(Dictionary<int, IFrameItem> frameItemsDict)
 		
+        static public Dictionary<int, IFrameItem> ParseItemListDeleg(string ItemListFile, 
+            Func<List<string[]>, string, Dictionary<int, IFrameItem>> createItems)
+        {
+            Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();
+			List<string[]> ItemList = ReadMenuTextLines(",", ItemListFile);
+            allItemsDict = createItems(ItemList,ItemListFile);
+            return allItemsDict;
+        }
+
         static public List<IFrame<IFrameItem>> ParseFrameList(string frameFile, string itemsFile)
         {
 			Console.WriteLine("parsing frame list file");
 			//List<string[]> readFramesList = ReadMenuTextLines(",", file);
             List<string[]> readFramesList = ReadMenuTextLines(",", frameFile);
-			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();;
+			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
 			foreach (string[] frameParams in readFramesList)
             {
 				int frameNr, rows,  cols,  activeItemKey; //first four elements from frameParams
@@ -239,27 +247,17 @@ namespace ShellMenuNS
 			return framesList;
 		}
 
-/*
-        static public void ConstructFrameItemsDict(string frameFile)
+        static public List<IFrame<IFrameItem>> ParseFrameListDeleg(string frameFile, string itemsFile, 
+            Func<List<string[]>, string, List<IFrame<IFrameItem>>> listOfFrames)
         {
+            List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
             List<string[]> readFramesList = ReadMenuTextLines(",", frameFile);
-        } 
+            framesList = listOfFrames(readFramesList, itemsFile) ;
 
-        static public List<IFrame<IFrameItem>> ConstructFrameList(string frameFile, string itemsFile)
-        {
-            Dictionary<int, IFrameItem> allItemsDict = ParseItemList(itemsFile);
-
+            
+            //return listOfFrames(readFramesList, itemsFile);
+            return framesList;
         }
-*/
-
-/*
-        static public IFrame<IFrameItem> ConstructFrameFromLine()
-        {
-            IFrame<IFrameItem> frame;
-
-            return frame;
-        } 
-*/
 
 
         public static string[] stringSplit(string text)
