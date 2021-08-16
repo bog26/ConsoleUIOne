@@ -8,6 +8,7 @@ namespace ShellMenuNS
 {
     public class Actions
     {
+        public delegate void PrintConfigFile(List<string[]> readMenuTextList);
         static public void ShowCrtDirectory()
         {
             string path = Directory.GetCurrentDirectory();
@@ -128,6 +129,54 @@ namespace ShellMenuNS
                 Console.WriteLine("finished");
             }
         }
+
+
+        static public void ReadMenuTextLinesDeleg(string separator, string fileName, PrintConfigFile printConfigFile)
+        {
+            string[] textArr;
+            try
+            {
+                StreamReader reader = new StreamReader(fileName);
+                List<string[]> readMenuTextList = new List<string[]>();
+                using (reader)
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        if (!line.StartsWith("*"))
+                        {
+                            textArr = line.Split(separator);
+                            string[] lineTrimmedArr = new string[textArr.Length];
+                            for (int i = 0; i < textArr.Length; i++)
+                            {
+                                lineTrimmedArr[i] = textArr[i].Trim(' ', '"');
+                            }
+                            readMenuTextList.Add(lineTrimmedArr);
+                        }
+                    }
+                }
+                printConfigFile(readMenuTextList);
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"There was an issue! {e.Message}");
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine($"Cannot read file! Details: {e.Message}");
+            }
+            finally
+            {
+                Console.WriteLine("finished");
+            }
+        }
+
+
+
+
+
+
         //static public Dictionary<int, IFrameItem> ParseItemList(List<string[]> ItemList)
 		static public Dictionary<int, IFrameItem> ParseItemList(string ItemListFile)
         {
@@ -189,6 +238,20 @@ namespace ShellMenuNS
 
 			return framesList;
 		}
+
+/*
+        static public void ConstructFrameItemsDict(string frameFile)
+        {
+            List<string[]> readFramesList = ReadMenuTextLines(",", frameFile);
+        } 
+
+        static public List<IFrame<IFrameItem>> ConstructFrameList(string frameFile, string itemsFile)
+        {
+            Dictionary<int, IFrameItem> allItemsDict = ParseItemList(itemsFile);
+
+        }
+*/
+
 /*
         static public IFrame<IFrameItem> ConstructFrameFromLine()
         {
