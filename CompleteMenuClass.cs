@@ -274,8 +274,9 @@ namespace ShellMenuNS
 				{
 					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
 				}
-				Dictionary<int, IFrameItem> allItemsDict = Actions.ParseItemList(itemsFile);
-                Dictionary<int, IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
+				//Dictionary<int, IFrameItem> allItemsDict = Actions.ParseItemList(itemsFile);
+                Dictionary<int, IFrameItem> allItemsDict = Actions.ParseItemListDeleg(itemsFile, CreateItemsList);
+				Dictionary<int, IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
 				foreach(int key in frameItemKeys)
 				{
 					itemsDictframe.Add(key,allItemsDict[key]);
