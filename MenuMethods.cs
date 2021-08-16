@@ -172,37 +172,6 @@ namespace ShellMenuNS
             }
         }
 
-
-
-
-
-
-        //static public Dictionary<int, IFrameItem> ParseItemList(List<string[]> ItemList)
-		static public Dictionary<int, IFrameItem> ParseItemList(string ItemListFile)
-        {
-			Console.WriteLine("parsing item list file");
-            Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();
-			List<string[]> ItemList = ReadMenuTextLines(",", ItemListFile);
-            foreach (string[] textsArray in ItemList)
-            {
-                int itemNr, posCol, posRow, link;
-				string labelText;
-				bool dyn, actTrig;
-
-                int.TryParse(textsArray[0], out itemNr);
-				labelText = textsArray[1];
-				int.TryParse(textsArray[2], out posCol);
-				int.TryParse(textsArray[3], out posRow);
-				bool.TryParse(textsArray[4], out dyn);
-				bool.TryParse(textsArray[5], out actTrig);
-				int.TryParse(textsArray[6], out link);
-				IFrameItem item = new FrameItemDisplay(itemNr, labelText, posCol, posRow, dyn, actTrig, link);
-				allItemsDict.Add(item.FrameItemNr,item);
-            }
-            return allItemsDict;
-        }
-		//static public List<IFrame<IFrameItem>> ParseFrameList(Dictionary<int, IFrameItem> frameItemsDict)
-		
         static public Dictionary<int, IFrameItem> ParseItemListDeleg(string ItemListFile, 
             Func<List<string[]>, string, Dictionary<int, IFrameItem>> createItems)
         {
@@ -212,50 +181,12 @@ namespace ShellMenuNS
             return allItemsDict;
         }
 
-        static public List<IFrame<IFrameItem>> ParseFrameList(string frameFile, string itemsFile)
-        {
-			Console.WriteLine("parsing frame list file");
-			//List<string[]> readFramesList = ReadMenuTextLines(",", file);
-            List<string[]> readFramesList = ReadMenuTextLines(",", frameFile);
-			List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
-			foreach (string[] frameParams in readFramesList)
-            {
-				int frameNr, rows,  cols,  activeItemKey; //first four elements from frameParams
-				int[] frameItemKeys = new int[frameParams.Length-4]; //next elements will form an int[]
-				
-				int.TryParse(frameParams[0], out frameNr);
-				int.TryParse(frameParams[1], out rows);
-				int.TryParse(frameParams[2], out cols);
-				int.TryParse(frameParams[3], out activeItemKey);
-				
-				for(int i=0; i<frameItemKeys.Length;i++)
-				{
-					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
-				}
-				Dictionary<int, IFrameItem> allItemsDict = ParseItemList(itemsFile);
-                Dictionary<int, IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
-				foreach(int key in frameItemKeys)
-				{
-					itemsDictframe.Add(key,allItemsDict[key]);
-				} 
-
-				IFrame<IFrameItem> frame = new FrameDisplay(frameNr, rows, cols, itemsDictframe, activeItemKey);
-				framesList.Add(frame);
-				itemsDictframe.Clear();
-			}
-
-			return framesList;
-		}
-
         static public List<IFrame<IFrameItem>> ParseFrameListDeleg(string frameFile, string itemsFile, 
             Func<List<string[]>, string, List<IFrame<IFrameItem>>> listOfFrames)
         {
             List<IFrame<IFrameItem>> framesList = new List<IFrame<IFrameItem>>();
             List<string[]> readFramesList = ReadMenuTextLines(",", frameFile);
             framesList = listOfFrames(readFramesList, itemsFile) ;
-
-            
-            //return listOfFrames(readFramesList, itemsFile);
             return framesList;
         }
 
