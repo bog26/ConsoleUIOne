@@ -92,6 +92,7 @@ namespace ShellMenuNS
 			get{return this.readyForUpdate;}
 			set{this.readyForUpdate = value;}
 		}
+		/*
 		public Dictionary<int,IFrameItem> ConstructSortedItemsDict()
 		{
 			Dictionary<int,IFrameItem> unSortedDict = new Dictionary<int,IFrameItem>();
@@ -100,6 +101,9 @@ namespace ShellMenuNS
 			sortedDict = SortItems(unSortedDict);
 			return sortedDict;
 		}
+		*/
+
+
 		public Dictionary<int,IFrameItem> ReadItemsFile() // reads a file containig items data, returns a dictionary
 		{
 			Dictionary<int,IFrameItem> itemsDict = new Dictionary<int,IFrameItem>();
@@ -108,7 +112,7 @@ namespace ShellMenuNS
 
 			return itemsDict;
 		}
-
+/*
 		public Dictionary<int,IFrameItem> SortItems(Dictionary<int,IFrameItem> unsortedDict) // reads a file containig items data, returns a dictionary
 		{
 			Dictionary<int,IFrameItem> SortedItemsDict = new Dictionary<int,IFrameItem>();
@@ -150,6 +154,7 @@ namespace ShellMenuNS
 			
 			return SortedItemsDict;
 		}
+		*/
     }
 	class TestFrameItemDisplay
 	{

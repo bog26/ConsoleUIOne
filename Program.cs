@@ -25,17 +25,8 @@ namespace ConsoleUIOne
     {
         public static void Main(string[] args)
         {
-            //jsonMenuTesting.testConstructObjFromJsonFile();
-            //TestCompleteMenu.CompleteMenuTesting();
-            //TestCompleteMenu.ConstructMenu();
-            //TestCompleteMenu.SortItems();
-            //consoleDisplayTesting.CompleteFrame();
-            //TestCompleteMenu.ConstructMenuDict(); //ok
             CompleteMenu menu = MenuInstantiation.Instance;
             menu.UpdateFrame();
-            //MenuTesting(menu);
-           
-            
         }
         public static void MenuTesting(CompleteMenu menu)
         {
