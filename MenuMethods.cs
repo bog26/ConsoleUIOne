@@ -130,7 +130,6 @@ namespace ShellMenuNS
             }
         }
 
-
         static public void ReadMenuTextLinesDeleg(string separator, string fileName, PrintConfigFile printConfigFile)
         {
             string[] textArr;
@@ -190,7 +189,6 @@ namespace ShellMenuNS
             return framesList;
         }
 
-
         public static string[] stringSplit(string text)
         {
             char StrSeparator = 'y';
@@ -198,7 +196,7 @@ namespace ShellMenuNS
             return textArr;
         }
 
-        //delegates practice here
+      
         
 
 
