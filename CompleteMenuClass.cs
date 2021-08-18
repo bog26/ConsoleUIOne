@@ -192,7 +192,8 @@ namespace ShellMenuNS
 					Console.WriteLine("triggering action 1");
 					//Actions.ReadMenuTextLines(",", "ItemsDataFile.txt");
 					//delegate here:
-					Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt",ShowFileContent);
+					//Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt",ShowFileContent);
+					ActionSwitch.ActionSw(1,1);
 					break;
 				case 2:
 					Console.SetCursorPosition(0,31);

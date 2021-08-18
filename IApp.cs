@@ -3,13 +3,17 @@ using System.Collections.Generic;
 
 namespace ShellMenuNS
 {
-	public interface IApp<T,U>:IMenu<T,U>
+	//public interface IApp<T,U>:IMenu<T,U>
+	public interface IApp
     {
 		int AppID {get;}
-		string AppTextDisplay {get;}
-		void ConstructMenu();
-		void AppMethods(int select, Func<int> MethodDelegate);
+		string AppName {get;}
+		string FramesFile {get;}
+		string ItemsFile {get;}
 
+		void ConstructMenu();
+		int SetAppID();
+		void AppMethods(int select, Func<int> MethodDelegate);
 
     }
 }

@@ -7,21 +7,21 @@ namespace ShellMenuNS
 	public class App // 
     {
 		private int appID;
-		private string appTextDisplay;
+		private string appName;
 
 		public App(int id, string text)
 		{
 			this.appID = id;
-			this.appTextDisplay = text;
+			this.appName = text;
 		}
 		
 		public int AppID
 		{
 			get{return this.appID;}
 		}
-		public string AppTextDisplay
+		public string AppName
 		{
-			get{return this.appTextDisplay;}
+			get{return this.appName;}
 		}
 
 		public void ConstructMenu()
