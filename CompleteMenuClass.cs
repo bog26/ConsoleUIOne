@@ -13,6 +13,7 @@ namespace ShellMenuNS
 		private List<IFrame<IFrameItem>> displayFrames;
 		private List<IFrame<IFrameItem>> dynamicFrames;
 		private IFrame<IFrameItem> crtDisplayFrame;
+		private App crtApp = null;
 		
 		public CompleteMenu()
 		{
@@ -52,6 +53,13 @@ namespace ShellMenuNS
 			get{return this.crtDisplayFrame;}
 			set{this.crtDisplayFrame = value;}
 		}
+
+		public App CrtApp
+		{
+			get{return this.crtApp;}
+			set{this.crtApp = value;}
+		}
+
 		public static List<IFrame<IFrameItem>> ReadFramesFromJsonFile()
 		{
 			List<IFrame<IFrameItem>> frameList = new List<IFrame<IFrameItem>>();
@@ -112,7 +120,8 @@ namespace ShellMenuNS
 			//<<debug
 			this.crtDisplayFrame.CrtDisplayItem =  this.crtDisplayFrame.DisplayItemsDict[this.crtDisplayFrame.OrderedKeys[crtIndex]];	
 		}
-		public void UpdateFrame()
+		public delegate void SwApp(int choice);
+		public void UpdateFrame(SwApp swApp)
 		{
 			DisplayCRTFrame();
 			int crtIndex = this.crtDisplayFrame.CursorPosition;
@@ -125,7 +134,7 @@ namespace ShellMenuNS
 				keyRead(crtIndex, length, out index, out itemPressed);
 				if(itemPressed)
 				{
-					index = ActionOnEnter(this.CrtDisplayFrame.CrtDisplayItem, index);
+					index = ActionOnEnter(this.CrtDisplayFrame.CrtDisplayItem, index, swApp);
 				}
 				DeleteItemFrame();
 				crtIndex = index; 
@@ -162,11 +171,11 @@ namespace ShellMenuNS
                     break;
 				}
 		}
-		public int ActionOnEnter(IFrameItem FrameItem, int OrderedKeysCrtIndex)
+		public int ActionOnEnter(IFrameItem FrameItem, int OrderedKeysCrtIndex, SwApp swApp)
 		{
 			if(FrameItem.IsActionTrigger)
 			{
-				ActionTrigger(FrameItem.Link);
+				swApp(FrameItem.Link);
 				return OrderedKeysCrtIndex;
 			}
 			else
@@ -183,6 +192,9 @@ namespace ShellMenuNS
 				return 0; //displying new frame => selected display item will be this.crtDisplayFrame.OrderedKeys[0] 
 			}
 		}
+		public delegate void DoSomething(int choice);
+		
+
 		public void ActionTrigger(int ItemLink)
 		{
 			switch (ItemLink)
@@ -195,6 +207,7 @@ namespace ShellMenuNS
 					//Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt",ShowFileContent);
 					Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt", IOMethodsCLS.ShowFileContent);
 					//ActionSwitch.ActionSw(1,1);
+					
 					break;
 				case 2:
 					Console.SetCursorPosition(0,31);
@@ -223,6 +236,9 @@ namespace ShellMenuNS
 					break;
 			}
 		}
+		//public delegate void DoSomething(List<string[]> readMenu);
+		
+
 		public static Dictionary<int, IFrameItem> CreateItemsList(List<string[]> readItemsList,string itemsFile)
 		{
 			Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();

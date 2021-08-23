@@ -15,7 +15,7 @@ namespace ShellMenuNS
 
 		void ConstructMenu();
 		int SetAppID();
-		void AppMethods(int select, Func<int> MethodDelegate);
+		//void AppMethods(int select, Func<int> MethodDelegate);
 
     }
 }

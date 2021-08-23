@@ -12,7 +12,9 @@ namespace ShellMenuNS
 		private string framesFile;
 		private string itemsFile;
 		private CompleteMenu application;
+		
 
+		//public App(int id, string text, Func<int> MethodDelegate)
 		public App(int id, string text)
 		{
 			this.appID = id;
@@ -80,12 +82,19 @@ namespace ShellMenuNS
 		{
 			get{return this.application;}
 		}
-
-		//public void AppMethods(int select)
-		public void AppMethods(int select, Func<int> MethodDelegate)
+		
+		public void AppMethods(int select)
 		{
 			// delegate method inside app file will contain a switch(int)
 			//	 that will trigger other methods
+			Console.SetCursorPosition(0,35);
+			Console.WriteLine("selected: "+select);
+
+		}
+		public delegate void SwAppMeth(int link);
+		public void SwitchMeth(int link, SwAppMeth swAppMeth)
+		{
+			swAppMeth(link); 
 		}
 
 
