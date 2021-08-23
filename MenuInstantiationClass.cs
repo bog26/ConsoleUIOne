@@ -9,6 +9,7 @@ namespace ShellMenuNS
       public const string FramesFile = "FramesDataFile.txt";
       public const string ItemsFile = "ItemsDataFile.txt";
 		  //public static CompleteMenu Instance {get;} = new CompleteMenu(0,Actions.ParseFrameList(FramesFile, ItemsFile));
+
       public static CompleteMenu Instance {get;} = new CompleteMenu(0,Actions.ParseFrameListDeleg(FramesFile, ItemsFile, CompleteMenu.CreateFramesList));    
     }
 }

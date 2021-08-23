@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ShellMenuNS
 {
 	
-	public class ActionSwitch 
+	public static class ActionSwitch 
     {
 		static public void ActionSw(int appId, int itemLink)
 		{

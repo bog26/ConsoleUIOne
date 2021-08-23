@@ -25,8 +25,9 @@ namespace ConsoleUIOne
     {
         public static void Main(string[] args)
         {
-            CompleteMenu menu = MenuInstantiation.Instance;
-            menu.UpdateFrame();
+            //CompleteMenu menu = MenuInstantiation.Instance;
+            //menu.UpdateFrame();
+            MainApp.ConstructMainApp();
         }
         public static void MenuTesting(CompleteMenu menu)
         {

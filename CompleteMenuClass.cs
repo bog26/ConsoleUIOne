@@ -193,7 +193,8 @@ namespace ShellMenuNS
 					//Actions.ReadMenuTextLines(",", "ItemsDataFile.txt");
 					//delegate here:
 					//Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt",ShowFileContent);
-					ActionSwitch.ActionSw(1,1);
+					Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt", IOMethodsCLS.ShowFileContent);
+					//ActionSwitch.ActionSw(1,1);
 					break;
 				case 2:
 					Console.SetCursorPosition(0,31);
@@ -221,19 +222,6 @@ namespace ShellMenuNS
 					Console.WriteLine("triggering default action");
 					break;
 			}
-		}
-
-		public void ShowFileContent(List<string[]> readMenuTextList)
-		{
-			Console.WriteLine("delegate func");
-			foreach (string[] textsArray in readMenuTextList)
-                {
-                    foreach (string word in textsArray)
-                    {
-                        Console.Write(word + "|");
-                    }
-                    Console.WriteLine();
-                }
 		}
 		public static Dictionary<int, IFrameItem> CreateItemsList(List<string[]> readItemsList,string itemsFile)
 		{

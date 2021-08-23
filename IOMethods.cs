@@ -1,11 +1,12 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 //using learningNS;
 //using word = Microsoft.Office.Interop.Word;
 
 namespace IOMethNS
 {
-	class IOMethodsCLS
+	public static class IOMethodsCLS
     	{
         	public static void DirSet(string dir)
         	{
@@ -28,8 +29,6 @@ namespace IOMethNS
 			}
 		
         	}
-
-			
 
 			public static void readFile(string file)
 			//public static void readFileExceptionWrap(string file)
@@ -88,6 +87,18 @@ namespace IOMethNS
 				{
 					Console.WriteLine("finished");
 				}	
+			}
+			public static void ShowFileContent(List<string[]> readMenuTextList)
+			{
+				Console.WriteLine("delegate func");
+				foreach (string[] textsArray in readMenuTextList)
+                	{
+                    	foreach (string word in textsArray)
+                    	{
+                        	Console.Write(word + "|");
+                    	}
+                    	Console.WriteLine();
+                	}
 			}
 			
     	}
