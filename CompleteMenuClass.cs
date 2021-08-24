@@ -103,7 +103,7 @@ namespace ShellMenuNS
 		public void DisplayCRTFrame()
 		{
 			Console.Clear();
-			consoleDisplay.DisplayLabel(1,1,"FrameNr.: "+this.crtDisplayFrame.FrameNr.ToString());
+			consoleDisplay.DisplayLabel(1,1,"FrameNr.: "+this.crtDisplayFrame.FrameNr.ToString());			
 			ShowItemFrame();
 			foreach(KeyValuePair<int,IFrameItem> pair in this.crtDisplayFrame.DisplayItemsDict)
 			{
@@ -192,53 +192,6 @@ namespace ShellMenuNS
 				return 0; //displying new frame => selected display item will be this.crtDisplayFrame.OrderedKeys[0] 
 			}
 		}
-		public delegate void DoSomething(int choice);
-		
-
-		public void ActionTrigger(int ItemLink)
-		{
-			switch (ItemLink)
-			{
-				case 1:
-					Console.SetCursorPosition(0,31);
-					Console.WriteLine("triggering action 1");
-					//Actions.ReadMenuTextLines(",", "ItemsDataFile.txt");
-					//delegate here:
-					//Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt",ShowFileContent);
-					Actions.ReadMenuTextLinesDeleg(",", "ItemsDataFile.txt", IOMethodsCLS.ShowFileContent);
-					//ActionSwitch.ActionSw(1,1);
-					
-					break;
-				case 2:
-					Console.SetCursorPosition(0,31);
-					Console.WriteLine("triggering action 2");
-					Console.WriteLine("reading complete file");
-					Actions.ReadMenuFile();
-					break;
-				case 3:
-					Console.SetCursorPosition(0,31);
-					Console.WriteLine("Delegates TBD");
-					break;
-				case 4:
-					Console.SetCursorPosition(0,31);
-					Console.WriteLine("triggering action 4");
-					Console.WriteLine("Reading lines one by one");
-					Actions.ReadMenuFileLines();
-					break;
-				case 5:
-					Console.SetCursorPosition(0,31);
-					Console.WriteLine("triggering action 5");
-					
-					break;
-				default:
-					Console.SetCursorPosition(0,31);
-					Console.WriteLine("triggering default action");
-					break;
-			}
-		}
-		//public delegate void DoSomething(List<string[]> readMenu);
-		
-
 		public static Dictionary<int, IFrameItem> CreateItemsList(List<string[]> readItemsList,string itemsFile)
 		{
 			Dictionary<int, IFrameItem> allItemsDict = new Dictionary<int, IFrameItem>();
@@ -290,6 +243,7 @@ namespace ShellMenuNS
 			}
 			return framesList;
 		}
+
 
     }
 

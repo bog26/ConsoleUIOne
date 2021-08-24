@@ -17,7 +17,7 @@ namespace ShellMenuNS
 		void SelectCurrentFrameItem(int crtIndex);
 		//void keyRead(int crtIndex, int length, out int newIndex, out bool enter);
 		//int ActionOnEnter(U FrameItem, int OrderedKeysCrtIndex);
-		void ActionTrigger(int ItemLink);
+		//void ActionTrigger(int ItemLink);
 		//void UpdateFrame(SwApp swApp);
 
     }

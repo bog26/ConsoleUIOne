@@ -39,8 +39,7 @@ namespace ShellMenuNS
 					Console.WriteLine("constructing Database"+"   ");
 					break;
 				default:
-					Console.SetCursorPosition(0,33);
-					Console.WriteLine("default app");
+					
 					break;
 
 			}
