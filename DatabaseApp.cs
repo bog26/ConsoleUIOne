@@ -9,35 +9,41 @@ namespace ShellMenuNS
 	//	TimeApp, FilesApp, encryptApp, etc.
 
 	//public static class MainApp
-	public static class MainApp
+	public static class DatabaseApp
     {
-		public const string appName = "Main Menu";
-		public static void ConstructMainApp()
+		public const string appName = "Database";
+		public static void ConstructDatabaseApp()
 		{
-			App MainApp = new App(0, appName);
-			MainApp.Application.CrtApp = MainApp;
-			MainApp.Application.UpdateFrame(AppSwitch);
+			App DatabaseApp = new App(0, appName);
+			DatabaseApp.Application.CrtApp = DatabaseApp;
+			DatabaseApp.Application.UpdateFrame(AppSwitch);
 		}
 		public static void AppSwitch(int ItemLink)
 		{
 			switch (ItemLink)
 			{
+				case -1:
+					MainApp.ConstructMainApp();
+					break;
+				case 0:
+					ConstructDatabaseApp();
+					break;
+
 				case 1:
 					Console.SetCursorPosition(0,33);
-					Console.WriteLine("constructing TimeApp"+"         ");
+					Console.WriteLine("WIP ..."+"   ");
 					break;
 				case 2:
 					Console.SetCursorPosition(0,33); 
-					Console.WriteLine("constructing FilesApp"+"        ");
+					Console.WriteLine("WIP ..."+"   ");
 					break;
 				case 3:
 					Console.SetCursorPosition(0,33);
-					Console.WriteLine("constructing EncryptApp"+"        ");
+					Console.WriteLine("WIP ..."+"   ");
 					break;
 				case 4:
-					DatabaseApp.ConstructDatabaseApp();
-					//Console.SetCursorPosition(0,33);
-					//Console.WriteLine("constructing Database WIP ..."+"   ");
+					Console.SetCursorPosition(0,33);
+					Console.WriteLine("WIP ..."+"   ");
 					break;
 				default:
 					
@@ -46,7 +52,7 @@ namespace ShellMenuNS
 			}
 		}
     }
-	public static class TestMainApp
+	public static class TestDatabaseApp
 	{
 		
 	}
