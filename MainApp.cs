@@ -24,15 +24,23 @@ namespace ShellMenuNS
 			{
 				case 1:
 					Console.SetCursorPosition(0,33);
-					Console.WriteLine("constructing TimeApp");
+					Console.WriteLine("constructing TimeApp"+"   ");
 					break;
 				case 2:
 					Console.SetCursorPosition(0,33);
-					Console.WriteLine("constructing FilesApp");
+					Console.WriteLine("constructing FilesApp"+"   ");
 					break;
 				case 3:
 					Console.SetCursorPosition(0,33);
-					Console.WriteLine("constructing EncryptApp");
+					Console.WriteLine("constructing EncryptApp"+"   ");
+					break;
+				case 4:
+					Console.SetCursorPosition(0,33);
+					Console.WriteLine("constructing Database"+"   ");
+					break;
+				default:
+					Console.SetCursorPosition(0,33);
+					Console.WriteLine("default app");
 					break;
 
 			}

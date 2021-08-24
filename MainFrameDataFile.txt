@@ -5,4 +5,5 @@
 * - it can be manually written/modified by user, or by other program module
 * - lines should be introduced in the this form: || int frameNr,int rows, int cols, int activeItemKey, ItemKey1, ItemKey2,..,ItemKeyN ||
 * - Ex: <<  1,10,10,1, 1,2,3  >>
-1,10,10,1, 1,2,3
+*1,10,10,1, 1,2,3
+1,10,10,1, 1,2,3,4
