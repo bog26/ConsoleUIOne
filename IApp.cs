@@ -13,7 +13,7 @@ namespace ShellMenuNS
 		string FramesFile {get;}
 		string ItemsFile {get;}
 
-		void ConstructMenu();
+		//void ConstructMenu();
 		int SetAppID();
 		//void AppMethods(int select, Func<int> MethodDelegate);
 

@@ -12,6 +12,7 @@ namespace ShellMenuNS
 		private string framesFile;
 		private string itemsFile;
 		private CompleteMenu application;
+		//private IMenu<IFrame<IFrameItem>,IFrameItem> application;
 		
 
 		//public App(int id, string text, Func<int> MethodDelegate)
@@ -39,12 +40,6 @@ namespace ShellMenuNS
 			frames = framesAndItemsConfigFiles[0][1];
 		}
 
-		public static CompleteMenu ConstructMenu(string FramesFile, string ItemsFile)
-		{
-			CompleteMenu menu = new CompleteMenu(0,Actions.ParseFrameListDeleg(FramesFile, ItemsFile, CompleteMenu.CreateFramesList)); 
-			return menu;
-		}
-
 		public int AppID
 		{
 			get{return this.appID;}
@@ -59,7 +54,6 @@ namespace ShellMenuNS
 			set{this.apps = value;}
 		}
 		
-
 		public string FramesFile
 		{
 			get{return this.framesFile;}
@@ -79,27 +73,10 @@ namespace ShellMenuNS
 			return appIdNr;
 		}
 		public CompleteMenu Application
+		//public IMenu<IFrame<IFrameItem>,IFrameItem> Application
 		{
 			get{return this.application;}
 		}
-		
-		public void AppMethods(int select)
-		{
-			// delegate method inside app file will contain a switch(int)
-			//	 that will trigger other methods
-			Console.SetCursorPosition(0,35);
-			Console.WriteLine("selected: "+select);
-
-		}
-		public delegate void SwAppMeth(int link);
-		public void SwitchMeth(int link, SwAppMeth swAppMeth)
-		{
-			swAppMeth(link); 
-		}
-
-
-
-
     }
 	class TestApp
 	{

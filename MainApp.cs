@@ -14,14 +14,9 @@ namespace ShellMenuNS
 		public const string appName = "Main Menu";
 		public static void ConstructMainApp()
 		{
-			//string configFileName = App.ConstructFileName(appName);
-			//construct a CompleteMenu object using the configFileName
-			//use the new CompleteMenu object to define the new MainApp
-			//App MainApp = new App(0, appName, AppSwitch);
 			App MainApp = new App(0, appName);
 			MainApp.Application.CrtApp = MainApp;
 			MainApp.Application.UpdateFrame(AppSwitch);
-
 		}
 		public static void AppSwitch(int ItemLink)
 		{
@@ -42,7 +37,6 @@ namespace ShellMenuNS
 
 			}
 		}
-		
     }
 	public static class TestMainApp
 	{
