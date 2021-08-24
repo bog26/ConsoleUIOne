@@ -103,7 +103,9 @@ namespace ShellMenuNS
 		public void DisplayCRTFrame()
 		{
 			Console.Clear();
-			consoleDisplay.DisplayLabel(1,1,"FrameNr.: "+this.crtDisplayFrame.FrameNr.ToString());			
+			consoleDisplay.DisplayLabel(1,1,this.crtDisplayFrame.FrameNr.ToString());
+			consoleDisplay.DisplayLabel(5,1,this.crtDisplayFrame.FrameTitle);
+
 			ShowItemFrame();
 			foreach(KeyValuePair<int,IFrameItem> pair in this.crtDisplayFrame.DisplayItemsDict)
 			{
@@ -221,15 +223,17 @@ namespace ShellMenuNS
 			foreach (string[] frameParams in readFramesList)
             {
 				int frameNr, rows,  cols,  activeItemKey; //first four elements from frameParams
+				string title;
 				int.TryParse(frameParams[0], out frameNr);
-				int.TryParse(frameParams[1], out rows);
-				int.TryParse(frameParams[2], out cols);
-				int.TryParse(frameParams[3], out activeItemKey);
+				title = frameParams[1];
+				int.TryParse(frameParams[2], out rows);
+				int.TryParse(frameParams[3], out cols);
+				int.TryParse(frameParams[4], out activeItemKey);
 				
-				int[] frameItemKeys = new int[frameParams.Length-4]; //next elements will form an int[]
+				int[] frameItemKeys = new int[frameParams.Length-5]; //next elements will form an int[]
 				for(int i=0; i<frameItemKeys.Length;i++)
 				{
-					int.TryParse(frameParams[i+4], out frameItemKeys[i]);
+					int.TryParse(frameParams[i+5], out frameItemKeys[i]);
 				}
                 Dictionary<int, IFrameItem> allItemsDict = Actions.ParseItemListDeleg(itemsFile, CreateItemsList);
 				Dictionary<int, IFrameItem> itemsDictframe = new Dictionary<int, IFrameItem>();
@@ -238,7 +242,8 @@ namespace ShellMenuNS
 					itemsDictframe.Add(key,allItemsDict[key]);
 				} 
 
-				IFrame<IFrameItem> frame = new FrameDisplay(frameNr, rows, cols, itemsDictframe, activeItemKey);
+				//IFrame<IFrameItem> frame = new FrameDisplay(frameNr, rows, cols, itemsDictframe, activeItemKey);
+				IFrame<IFrameItem> frame = new FrameDisplay(frameNr,title, rows, cols, itemsDictframe, activeItemKey);
 				framesList.Add(frame);
 			}
 			return framesList;
