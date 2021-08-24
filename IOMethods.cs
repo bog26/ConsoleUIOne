@@ -33,9 +33,9 @@ namespace IOMethNS
 			{
 				try
 				{
-				StreamReader reader = new StreamReader(file);
-				//using (StreamReader reader = new StreamReader(file))
-				using (reader)
+					StreamReader reader = new StreamReader(file);
+					//using (StreamReader reader = new StreamReader(file))
+					using (reader)
 					{
 						while(!reader.EndOfStream)
 						{
@@ -212,6 +212,17 @@ namespace IOMethNS
             	string path = Directory.GetCurrentDirectory();
             	Console.WriteLine($"current directory:{path}");
         	}
+			public static string UserDefinedFilePath()
+			{
+				Console.WriteLine("please insert directory");
+				string dirPath = Console.ReadLine();
+				string correctedDirPath = @dirPath;
+				Console.WriteLine("please insert file name");
+				string filePath = Console.ReadLine();
+				string correctedFilePath = @filePath;
+				string completePath = correctedDirPath + "\\" + correctedFilePath;
+				return completePath;
+			}
     	}
 	public class IOMethodsCLSTesting
 	{

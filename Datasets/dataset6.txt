@@ -1,0 +1,2 @@
+*Read me: this creates a dataset using quadratic polynom: a*x*x+b*x+c
+85,96,117,148,189,240,301,372,453,544,645,756,877,1008,1149

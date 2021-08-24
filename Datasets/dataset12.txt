@@ -1,0 +1,2 @@
+*Read me: this dataset is created using the quadratic polynom: 8*x*x+45*x+7, where x is between 0 and 17
+7,60,129,214,315,432,565,714,879,1060,1257,1470,1699,1944,2205,2482,2775,3084
