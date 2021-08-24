@@ -5,6 +5,7 @@ namespace ShellMenuNS
 	public interface IFrame<T> 
     {
 		int FrameNr {get;set;}
+		string FrameTitle {get;set;}
 		int[] GridSize {get;set;}
 		List<T> DisplayItems {get;set;}
 		Dictionary<int,T> DisplayItemsDict {get;set;}
