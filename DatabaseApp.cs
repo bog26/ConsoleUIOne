@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using IOMethNS;
+using System.Linq;
 
 namespace ShellMenuNS
 {
@@ -37,17 +38,20 @@ namespace ShellMenuNS
 					CreateUserDefinedIntDataSet();
 					break;
 				case 2:
-					Console.SetCursorPosition(0,33); 
-					Console.WriteLine("Query1 WIP ..."+"   ");
+					Query1();
 					break;
 				case 3:
-					Console.SetCursorPosition(0,33);
-					Console.WriteLine("Query2 WIP ..."+"   ");
+					Query2();
 					break;
 				case 4:
 					Console.SetCursorPosition(0,33);
 					Console.WriteLine("Query3 ..."+"   ");
 					break;
+				case 6:
+					Console.SetCursorPosition(0,33);
+					Console.WriteLine("Sort1 TBD");
+					break;
+
 				default:
 					
 					break;
@@ -58,9 +62,10 @@ namespace ShellMenuNS
 			Console.SetCursorPosition(0,33);
 			Console.WriteLine("Dataset creation");
 			string dataFile =  IOMethodsCLS.UserDefinedFilePath();
-			OrderedIntDataset(dataFile);
-			dataFile =  IOMethodsCLS.UserDefinedFilePath();
-			QuadrPolynIntDataset(dataFile);
+			//OrderedIntDataset(dataFile);
+			//dataFile =  IOMethodsCLS.UserDefinedFilePath();
+			//QuadrPolynIntDataset(dataFile);
+			MultilineQuadrPolynIntDataset(dataFile);
 		}
 		public static void OrderedIntDataset(string path)
 		{
@@ -71,19 +76,15 @@ namespace ShellMenuNS
 				int userInput = int.Parse(Console.ReadLine());
 				using (writer)
 				{
-					
 					writer.WriteLine("*"+"Read me: this creates a list of ordered integers");
 					for(int i=0; i<userInput;i++)
 					{
-						
 						writer.Write(i);
 						if(i!=userInput-1)
 						{
 							writer.Write(",");
 						}
-						
 					}
-					
 				}
 			}
 			catch (FileNotFoundException e)
@@ -114,23 +115,17 @@ namespace ShellMenuNS
 				int b = int.Parse(Console.ReadLine());
 				Console.WriteLine("please insert c");
 				int c = int.Parse(Console.ReadLine());
-
 				using (writer)
 				{
-					
-					//writer.WriteLine("*"+"Read me: this creates a dataset using quadratic polynom: a*x*x+b*x+c");
 					writer.WriteLine("*"+$"Read me: this dataset is created using the quadratic polynom: {a}*x*x+{b}*x+{c}, where x is between 0 and {datasetSize-1}");
 					for(int i=0; i<datasetSize;i++)
 					{
-						
 						writer.Write(a*i*i+b*i+c);
 						if(i!=datasetSize-1)
 						{
 							writer.Write(",");
-						}
-						
+						}	
 					}
-					
 				}
 			}
 			catch (FileNotFoundException e)
@@ -146,7 +141,140 @@ namespace ShellMenuNS
 				Console.WriteLine("finished");
 			}
 		}
+		public static void MultilineQuadrPolynIntDataset(string path)
+		{
+			try
+			{
+				StreamWriter writer = new StreamWriter(path);
+				Console.WriteLine("creating a dataset using quadratic polynom: a*x*x+b*x+c");
+				Console.WriteLine("please insert dataset size");
+				int datasetSize = int.Parse(Console.ReadLine());
+				Console.WriteLine("please insert start value for a");
+				int a = int.Parse(Console.ReadLine());
+				Console.WriteLine("please insert start value for b");
+				int b = int.Parse(Console.ReadLine());
+				Console.WriteLine("please insert start value for c");
+				int c = int.Parse(Console.ReadLine());
+				Console.WriteLine("please insert increment");
+				int increment = int.Parse(Console.ReadLine());
+				Console.WriteLine("please insert nr of sets to be generated");
+				int setsNr = int.Parse(Console.ReadLine());
 
+				using (writer)
+				{
+					writer.WriteLine("*"+$"Read me: each dataset is created using the quadratic polynom: {a}*x*x+{b}*x+{c}, where x is between 0 and {datasetSize-1}. Nr of datasets: {setsNr}. Increment:{increment}");
+					
+					for(int i=0; i<setsNr;i++)
+					{
+						for(int j=0; j<datasetSize;j++)
+						{
+							writer.Write(a*j*j+b*j+c);
+							if(j!=datasetSize-1)
+							{
+								writer.Write(",");
+							}
+						}
+						writer.WriteLine();	
+						a+=increment; 	
+						b+=increment; 
+						c+=increment;
+						//a+=increment*i; 	
+						//b+=increment*i; 
+						//c+=increment*i;	
+
+					}
+				}
+			}
+			catch (FileNotFoundException e)
+			{
+				Console.WriteLine($"There was an issue! {e.Message}");
+			}
+			catch (IOException e)
+			{
+				Console.WriteLine($"Cannot read file! Details: {e.Message}");
+			}
+			finally
+			{
+				Console.WriteLine("finished");
+			}
+		}
+		public static void Query1()
+		{
+			Console.SetCursorPosition(0,50);
+			Console.WriteLine("Reading data");
+			string readDatasetFileName =  IOMethodsCLS.UserDefinedFilePath();
+			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
+			List<int[]> readDataset = ParseDataset(readDatasetFileName);
+			Console.WriteLine("Query1: selecting integers divisible with user-provided int divisor");
+			Console.WriteLine("please insert divisor");
+			int divisor = int.Parse(Console.ReadLine());
+			foreach(int[] dataset in readDataset)
+			{
+				var multipleNr =
+					from num in dataset
+					where num % divisor == 0
+					select num;
+				foreach(var item in multipleNr)
+				{
+					Console.Write(item + " ");
+				}
+				Console.WriteLine();
+			}
+		}
+		public static void Query2()
+		{
+			Console.SetCursorPosition(0,50);
+			Console.WriteLine("Reading data");
+			string readDatasetFileName =  IOMethodsCLS.UserDefinedFilePath();
+			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
+			List<int[]> readDataset = ParseDataset(readDatasetFileName);
+			Console.WriteLine("Query2: selecting integers inside an user-provided int inteval");
+			Console.WriteLine("please insert minimum value");
+			int minVal = int.Parse(Console.ReadLine());
+			Console.WriteLine("please insert maximum value");
+			int maxVal = int.Parse(Console.ReadLine());
+			foreach(int[] dataset in readDataset)
+			{
+				var inRangeNr =
+					from num in dataset
+					where (num > minVal) & (num < maxVal)
+					select num;
+				foreach(var item in inRangeNr)
+				{
+					Console.Write(item + " ");
+				}
+				Console.WriteLine();
+			}
+		}
+
+		
+
+		public static List<int[]> ParseDataset(string fileName)
+		{
+			List<string[]> readDataString =new List<string[]>();
+			List<int[]> convertedData =new List<int[]>();
+
+			readDataString = Actions.ReadMenuTextLines(",",fileName);
+			convertedData = ConvertToIntArrList(readDataString);
+			return convertedData;
+		}
+
+		public static List<int[]> ConvertToIntArrList(List<string[]> inputData)
+		{
+			List<int[]> outputData =new List<int[]>();
+
+			for(int i=0; i<inputData.Count; i++)
+			{
+				int[] crtOutputArr = new int[inputData[i].Length]; 
+				for(int j=0; j<crtOutputArr.Length; j++)
+				{
+					int.TryParse(inputData[i][j], out crtOutputArr[j]);
+				}
+				outputData.Add(crtOutputArr);
+			}
+
+			return outputData;
+		} 
 
 
 

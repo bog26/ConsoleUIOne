@@ -295,5 +295,71 @@ that word into a new text file
 				//txtFileContent.Text = sreader.ReadToEnd();
 			}
 	}
+/*
+	public class JsonMethods
+	{
+		
+
+
+
+
+
+		public static void CompleteMenuTesting() //creates complete menu from json, >> issue
+		{
+			Console.WriteLine("please insert directory!");
+			string dirPath = Console.ReadLine();
+			string correctedDirPath = @dirPath;
+			IOMethodsCLS.DirSet(correctedDirPath);
+			string fileName1 = "jsonStringFrame1.json";
+			string fileName2 = "jsonStringFrame2.json";
+			string fileName3 = "jsonStringFrame3.json";
+			string fileName4 = "jsonStringFrame4.json";
+			string[] frameFiles = new string[]{fileName1,fileName2,fileName3,fileName4};
+			string JsonFrameObjString1 = File.ReadAllText(frameFiles[0]);
+			string JsonFrameObjString2 = File.ReadAllText(frameFiles[1]);
+			string JsonFrameObjString3 = File.ReadAllText(frameFiles[2]);
+			string JsonFrameObjString4 = File.ReadAllText(frameFiles[3]);
+			string[] jsonStrings = new string[]{JsonFrameObjString1,JsonFrameObjString2,JsonFrameObjString3,JsonFrameObjString4};
+			//List<FrameDisplay> framesList = new List<FrameDisplay>();
+			List<FrameDisplay> framesList = new List<FrameDisplay>();
+			//CompleteMenu menu0 = new CompleteMenu();
+			foreach(string json in jsonStrings)
+			{
+				FrameDisplay FrameObj;
+				Console.WriteLine("\n*****showing FrameDisplay json*****\n"+json);
+				FrameObj = JsonSerializer.Deserialize<FrameDisplay>(json);
+				framesList.Add(FrameObj);
+				Console.WriteLine("checking FrameObj");
+				Console.WriteLine("frames in framesList: "+framesList.Count);
+				//Console.WriteLine("nr of DisplayItems in frame: "+FrameObj.DisplayItems.Count); //not ok ,null
+				Console.WriteLine("FrameNr: "+FrameObj.FrameNr);
+				//Console.WriteLine(framesList[framesList.Count-1].DisplayItems.Count);
+				//menu0.AddFrame(FrameObj);
+			}
+			CompleteMenu menu0 = new CompleteMenu(0,framesList);
+			Console.WriteLine("checking CompleteMenu object");
+			Console.WriteLine("Count DisplayFrames "+menu0.DisplayFrames.Count);
+			var options = new JsonSerializerOptions { WriteIndented = true };
+			string jsonStringMenu0 = JsonSerializer.Serialize<CompleteMenu>(menu0,options);
+			//string jsonStringMenu0 = JsonSerializer.Serialize<CompleteMenu>(menu0);
+			Console.WriteLine("\n***json for menu0:***\n"+jsonStringMenu0);
+			string menu0FileName1 = WriteStringToFileTest(jsonStringMenu0);
+			Console.WriteLine($"new saved file name is: {menu0FileName1}");
+		}
+		public static string WriteStringToFileTest(string text)
+		{
+			Console.WriteLine("please insert directory!");
+			string dirPath = Console.ReadLine();
+			string correctedDirPath = @dirPath;
+			IOMethodsCLS.DirSet(correctedDirPath);
+			Console.WriteLine("please insert Filename!");
+			//Ex:"jsonStringFrame2.json";
+			string fileName = Console.ReadLine();
+			File.WriteAllText(fileName, text);
+			return fileName;
+		}
+
+	}
+*/	
 }
 

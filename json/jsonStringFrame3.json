@@ -1,0 +1,71 @@
+{
+  "FrameNr": 3,
+  "GridSize": [
+    10,
+    10
+  ],
+  "DisplayItems": [
+    {
+      "FrameItemNr": 1,
+      "TextDisplay": "LabelOne",
+      "Column": 1,
+      "Row": 2,
+      "GridPosition": [
+        1,
+        2
+      ],
+      "IsCrtDisplayItem": true,
+      "IsDynamic": false,
+      "IsActionTrigger": false,
+      "Link": 0,
+      "ReadyForUpdate": false
+    },
+    {
+      "FrameItemNr": 2,
+      "TextDisplay": "LabelTwo",
+      "Column": 3,
+      "Row": 2,
+      "GridPosition": [
+        3,
+        2
+      ],
+      "IsCrtDisplayItem": false,
+      "IsDynamic": false,
+      "IsActionTrigger": false,
+      "Link": 0,
+      "ReadyForUpdate": false
+    },
+    {
+      "FrameItemNr": 3,
+      "TextDisplay": "LabelThree",
+      "Column": 5,
+      "Row": 2,
+      "GridPosition": [
+        5,
+        2
+      ],
+      "IsCrtDisplayItem": false,
+      "IsDynamic": false,
+      "IsActionTrigger": false,
+      "Link": 0,
+      "ReadyForUpdate": false
+    }
+  ],
+  "CursorPosition": 0,
+  "CrtDisplayItem": {
+    "FrameItemNr": 1,
+    "TextDisplay": "LabelOne",
+    "Column": 1,
+    "Row": 2,
+    "GridPosition": [
+      1,
+      2
+    ],
+    "IsCrtDisplayItem": true,
+    "IsDynamic": false,
+    "IsActionTrigger": false,
+    "Link": 0,
+    "ReadyForUpdate": false
+  },
+  "IsDynamic": false
+}

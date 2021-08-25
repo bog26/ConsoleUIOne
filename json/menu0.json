@@ -1,0 +1,156 @@
+{
+  "DisplayFrames": [
+    {
+      "FrameNr": 1,
+      "GridSize": [
+        10,
+        10
+      ],
+      "DisplayItems": null,
+      "CursorPosition": 0,
+      "CrtDisplayItem": {
+        "FrameItemNr": 1,
+        "TextDisplay": "LabelOne",
+        "Column": 1,
+        "Row": 2,
+        "GridPosition": [
+          1,
+          2
+        ],
+        "IsCrtDisplayItem": true,
+        "IsDynamic": false,
+        "IsActionTrigger": false,
+        "Link": 0,
+        "ReadyForUpdate": false
+      },
+      "IsDynamic": true
+    },
+    {
+      "FrameNr": 2,
+      "GridSize": [
+        10,
+        10
+      ],
+      "DisplayItems": null,
+      "CursorPosition": 0,
+      "CrtDisplayItem": {
+        "FrameItemNr": 1,
+        "TextDisplay": "LabelOne",
+        "Column": 1,
+        "Row": 2,
+        "GridPosition": [
+          1,
+          2
+        ],
+        "IsCrtDisplayItem": true,
+        "IsDynamic": false,
+        "IsActionTrigger": false,
+        "Link": 0,
+        "ReadyForUpdate": false
+      },
+      "IsDynamic": false
+    },
+    {
+      "FrameNr": 3,
+      "GridSize": [
+        10,
+        10
+      ],
+      "DisplayItems": null,
+      "CursorPosition": 0,
+      "CrtDisplayItem": {
+        "FrameItemNr": 1,
+        "TextDisplay": "LabelOne",
+        "Column": 1,
+        "Row": 2,
+        "GridPosition": [
+          1,
+          2
+        ],
+        "IsCrtDisplayItem": true,
+        "IsDynamic": false,
+        "IsActionTrigger": false,
+        "Link": 0,
+        "ReadyForUpdate": false
+      },
+      "IsDynamic": false
+    },
+    {
+      "FrameNr": 4,
+      "GridSize": [
+        10,
+        10
+      ],
+      "DisplayItems": null,
+      "CursorPosition": 0,
+      "CrtDisplayItem": {
+        "FrameItemNr": 1,
+        "TextDisplay": "LabelOne",
+        "Column": 1,
+        "Row": 2,
+        "GridPosition": [
+          1,
+          2
+        ],
+        "IsCrtDisplayItem": true,
+        "IsDynamic": false,
+        "IsActionTrigger": false,
+        "Link": 0,
+        "ReadyForUpdate": false
+      },
+      "IsDynamic": false
+    }
+  ],
+  "DynamicFrames": [
+    {
+      "FrameNr": 1,
+      "GridSize": [
+        10,
+        10
+      ],
+      "DisplayItems": null,
+      "CursorPosition": 0,
+      "CrtDisplayItem": {
+        "FrameItemNr": 1,
+        "TextDisplay": "LabelOne",
+        "Column": 1,
+        "Row": 2,
+        "GridPosition": [
+          1,
+          2
+        ],
+        "IsCrtDisplayItem": true,
+        "IsDynamic": false,
+        "IsActionTrigger": false,
+        "Link": 0,
+        "ReadyForUpdate": false
+      },
+      "IsDynamic": true
+    }
+  ],
+  "CrtDisplayFrame": {
+    "FrameNr": 1,
+    "GridSize": [
+      10,
+      10
+    ],
+    "DisplayItems": null,
+    "CursorPosition": 0,
+    "CrtDisplayItem": {
+      "FrameItemNr": 1,
+      "TextDisplay": "LabelOne",
+      "Column": 1,
+      "Row": 2,
+      "GridPosition": [
+        1,
+        2
+      ],
+      "IsCrtDisplayItem": true,
+      "IsDynamic": false,
+      "IsActionTrigger": false,
+      "Link": 0,
+      "ReadyForUpdate": false
+    },
+    "IsDynamic": true
+  }
+}
