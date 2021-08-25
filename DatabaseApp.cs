@@ -49,11 +49,14 @@ namespace ShellMenuNS
 					break;
 				case 6:
 					Console.SetCursorPosition(0,33);
-					Console.WriteLine("Sort1 TBD");
+					Sort1();
 					break;
+				case 9:
+					Console.SetCursorPosition(0,33);
+					Group1();
+					break;	
 
 				default:
-					
 					break;
 			}
 		}
@@ -247,7 +250,52 @@ namespace ShellMenuNS
 			}
 		}
 
-		
+		public static void Sort1()
+		{
+			Console.SetCursorPosition(0,50);
+			Console.WriteLine("Reading data");
+			string readDatasetFileName =  IOMethodsCLS.UserDefinedFilePath();
+			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
+			List<int[]> readDataset = ParseDataset(readDatasetFileName);
+			foreach(int[] dataset in readDataset)
+			{
+				var sorted =
+				from item in dataset 
+				orderby item ascending
+				select item;
+				foreach(var item in sorted)
+				{
+					Console.Write(item+" ");
+				}
+				Console.WriteLine();
+			}
+		}
+		public static void Group1()
+		{
+			Console.SetCursorPosition(0,50);
+			Console.WriteLine("Reading data");
+			string readDatasetFileName =  IOMethodsCLS.UserDefinedFilePath();
+			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
+			List<int[]> readDataset = ParseDataset(readDatasetFileName);
+			int div2 = 2;
+			int div3 = 3;
+			int div5 = 5;
+			foreach(int[] dataset in readDataset)
+			{
+				var numberGroups =
+				from item in dataset
+				group item by (item % div2 == 0) into group2 
+				select new {Items = group2};
+				foreach(var group2 in numberGroups)
+				{
+					Console.Write(group2.Items + " ");
+				}
+				Console.WriteLine();
+				
+
+
+			}
+		}
 
 		public static List<int[]> ParseDataset(string fileName)
 		{
