@@ -285,15 +285,16 @@ namespace ShellMenuNS
 				var numberGroups =
 				from item in dataset
 				group item by (item % div2 == 0) into group2 
-				select new {Items = group2};
+				select new {Reminder = group2.Key, Items = group2};
 				foreach(var group2 in numberGroups)
 				{
-					Console.Write(group2.Items + " ");
+					Console.WriteLine($"Numbers divisibility by {div2} {group2.Reminder}");
+					foreach(var item in group2.Items)
+					{
+						Console.WriteLine(item);
+					}
 				}
-				Console.WriteLine();
-				
-
-
+				Console.WriteLine("\nNext Dataset:");
 			}
 		}
 
