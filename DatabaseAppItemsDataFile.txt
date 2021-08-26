@@ -25,3 +25,5 @@
 16,Sort3,8,6,false,true,8
 17,Group1,1,6,false,true,9
 18,Group2,4,6,false,true,10
+19,Join1,1,6,false,true,11
+20,Nest1,1,6,false,true,12

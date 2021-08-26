@@ -55,6 +55,15 @@ namespace ShellMenuNS
 					Console.SetCursorPosition(0,33);
 					Group1();
 					break;	
+				case 11:
+					Console.SetCursorPosition(0,33);
+					Join1();
+					break;
+				case 12:
+					Console.SetCursorPosition(0,33);
+					Nest1();
+					break;
+
 
 				default:
 					break;
@@ -278,8 +287,6 @@ namespace ShellMenuNS
 			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
 			List<int[]> readDataset = ParseDataset(readDatasetFileName);
 			int div2 = 2;
-			int div3 = 3;
-			int div5 = 5;
 			foreach(int[] dataset in readDataset)
 			{
 				var numberGroups =
@@ -298,6 +305,28 @@ namespace ShellMenuNS
 			}
 		}
 
+		public static void Join1()
+		{
+			//move to a create dataset method; 
+			DBObjConstruction ProductsAndCategoryDB = new DBObjConstruction();
+
+			ProductsAndCategoryDB.Products.Add(new DBProduct(){Name="Cherry",CategoryID =1});
+			//Console.WriteLine(ProductsAndCategoryDB.Products[0].Name); //test only
+			var productsWithCategories =
+				from product in ProductsAndCategoryDB.Products
+				join category in ProductsAndCategoryDB.Categories
+					on product.CategoryID equals category.ID
+				select new {Name = product.Name, Category = category.Name};
+			foreach(var item in productsWithCategories)
+			{
+				Console.WriteLine(item);
+			}
+		}
+
+		public static void Nest1()
+		{
+
+		}
 		public static List<int[]> ParseDataset(string fileName)
 		{
 			List<string[]> readDataString =new List<string[]>();
