@@ -15,7 +15,7 @@
 6,Create Data Set,1,4,false,true,1
 7,Create Data Set,1,4,false,true,1
 8,Create Data Set,1,4,false,true,1
-9,Create Data Set,1,4,false,true,7
+9,Create Data Set,1,4,false,true,13
 10,Create Data Set,1,4,false,true,8
 11,Query1,1,6,false,true,2
 12,Query2,4,6,false,true,3
@@ -27,3 +27,6 @@
 18,Group2,4,6,false,true,10
 19,Join1,1,6,false,true,11
 20,Nest1,1,6,false,true,12
+21,Performance,8,8,false,false,6
+22,Performance Tests,1,4,false,true,14
+23,Tools,1,4,false,false,7

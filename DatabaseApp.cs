@@ -63,7 +63,13 @@ namespace ShellMenuNS
 					Console.SetCursorPosition(0,33);
 					Nest1();
 					break;
-
+				case 13:
+					//DBObjConstruction ProductsAndCategoryDB = new DBObjConstruction();
+					break;
+				case 14:
+					Console.SetCursorPosition(0,33);
+					PerformanceTest1();
+					break;
 
 				default:
 					break;
@@ -286,17 +292,18 @@ namespace ShellMenuNS
 			string readDatasetFileName =  IOMethodsCLS.UserDefinedFilePath();
 			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
 			List<int[]> readDataset = ParseDataset(readDatasetFileName);
-			int div2 = 2;
+			Console.WriteLine("please insert divisor");
+			int divisor = int.Parse(Console.ReadLine());
 			foreach(int[] dataset in readDataset)
 			{
 				var numberGroups =
 				from item in dataset
-				group item by (item % div2 == 0) into group2 
-				select new {Reminder = group2.Key, Items = group2};
-				foreach(var group2 in numberGroups)
+				group item by (item % divisor == 0) into groupedElements 
+				select new {Divisible = groupedElements.Key, Items = groupedElements};
+				foreach(var groupedElements in numberGroups)
 				{
-					Console.WriteLine($"Numbers divisibility by {div2} {group2.Reminder}");
-					foreach(var item in group2.Items)
+					Console.WriteLine($"Numbers divisibility by {divisor} {groupedElements.Divisible}");
+					foreach(var item in groupedElements.Items)
 					{
 						Console.WriteLine(item);
 					}
@@ -309,9 +316,8 @@ namespace ShellMenuNS
 		{
 			//move to a create dataset method; 
 			DBObjConstruction ProductsAndCategoryDB = new DBObjConstruction();
-
 			ProductsAndCategoryDB.Products.Add(new DBProduct(){Name="Cherry",CategoryID =1});
-			//Console.WriteLine(ProductsAndCategoryDB.Products[0].Name); //test only
+			
 			var productsWithCategories =
 				from product in ProductsAndCategoryDB.Products
 				join category in ProductsAndCategoryDB.Categories
@@ -325,8 +331,63 @@ namespace ShellMenuNS
 
 		public static void Nest1()
 		{
-
+			Console.SetCursorPosition(0,50);
+			Console.WriteLine("nesting");
+			DBObjConstruction ProductsAndCategoryDB = new DBObjConstruction();
+			var productsWithCategories =
+				from product in ProductsAndCategoryDB.Products
+				select new {
+					Name = product.Name,
+					Category =
+						(from category in ProductsAndCategoryDB.Categories
+						where category.ID == product.CategoryID
+						select category.Name).First()
+				};
+			foreach(var item in productsWithCategories)
+			{
+				Console.WriteLine(item);
+			}
 		}
+		public static void PerformanceTest1()
+			{
+				Console.SetCursorPosition(0,33);
+				int nrOfAddedElements = 50000000;
+				Console.WriteLine($"Performance tests. Adding {nrOfAddedElements} elements");
+				
+				List<int> list1 = new List<int>();
+				DateTime startTime = DateTime.Now;
+				list1.AddRange(Enumerable.Range(1,nrOfAddedElements));
+				Console.WriteLine($"Duration using extension method: {DateTime.Now-startTime}");
+
+				List<int> list2 = new List<int>();
+				startTime = DateTime.Now;
+				for(int i=0; i<nrOfAddedElements; i++)
+				{
+					list2.Add(i);
+				}
+				Console.WriteLine($"Duration using for loop: {DateTime.Now-startTime}");
+
+				Console.WriteLine("LINQ performance");
+				List<int> list3 = new List<int>();
+				list3.AddRange(Enumerable.Range(1,nrOfAddedElements));
+				startTime = DateTime.Now;
+				for(int i=0; i<1000; i++)
+				{
+					var elements = list3.Where(e => e>2000);
+				}
+				Console.WriteLine($"Duration with no execution: {DateTime.Now-startTime}");
+
+				startTime = DateTime.Now;
+				for(int i=0; i<1000; i++)
+				{
+					var elements = list3.Where(e => e>2000).First();
+					Console.Write(elements+ " ");
+				}
+				Console.WriteLine($"Duration with execution: {DateTime.Now-startTime}");
+
+
+			}
+		
 		public static List<int[]> ParseDataset(string fileName)
 		{
 			List<string[]> readDataString =new List<string[]>();
