@@ -1,0 +1,8 @@
+*    <<Database App - ReadMe>>
+* This is the Database data file containing information needed for the construction of the Database App
+* - comment lines start with the character "*" and will not be taken into account for the program execution
+* - all other lines will be used for construction of menu objects
+* - it can be manually written/modified by user, or by other program module
+DatabaseAppItemsDataFile.txt, DatabaseFramesDataFile.txt
+
+

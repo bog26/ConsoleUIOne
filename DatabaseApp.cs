@@ -44,8 +44,7 @@ namespace ShellMenuNS
 					Query2();
 					break;
 				case 4:
-					Console.SetCursorPosition(0,33);
-					Console.WriteLine("Query3 ..."+"   ");
+					Query3();
 					break;
 				case 6:
 					Console.SetCursorPosition(0,33);
@@ -265,6 +264,27 @@ namespace ShellMenuNS
 			}
 		}
 
+		public static void Query3()
+		{
+			Console.SetCursorPosition(0,50);
+			Console.WriteLine("Reading data");
+			string readDatasetFileName =  IOMethodsCLS.UserDefinedFilePath();
+			Console.WriteLine($"reading file:\n{readDatasetFileName}\n");
+			List<int[]> readDataset = ParseDataset(readDatasetFileName);
+			Console.WriteLine("Query3: selecting integers larger than user-provided int number");
+			Console.WriteLine("please insert minimum value");
+			int minVal = int.Parse(Console.ReadLine());
+			Console.WriteLine($"numbers larger than {minVal}:");
+			foreach(int[] dataset in readDataset)
+			{
+				var largerNr = dataset.Where(nr => nr>minVal);
+				foreach(var number in largerNr)
+				{
+					Console.Write(number + " ");
+				}
+				Console.WriteLine();
+			}
+		}
 		public static void Sort1()
 		{
 			Console.SetCursorPosition(0,50);
@@ -378,13 +398,44 @@ namespace ShellMenuNS
 				Console.WriteLine($"Duration with no execution: {DateTime.Now-startTime}");
 
 				startTime = DateTime.Now;
+				/*
 				for(int i=0; i<1000; i++)
 				{
 					var elements = list3.Where(e => e>2000).First();
 					Console.Write(elements+ " ");
 				}
-				Console.WriteLine($"Duration with execution: {DateTime.Now-startTime}");
+				*/
+				var elements1 = list3.Where(e => e>2000&e<3000);
+				
+				foreach(var element in elements1)
+				{
+					Console.Write(element + " ");
+				}
 
+				Console.WriteLine($"Duration with execution: {DateTime.Now-startTime}");
+				
+				Console.WriteLine("working with dictionary");
+				List<int> dictUnderTest1Keys = new List<int>();
+				dictUnderTest1Keys.AddRange(Enumerable.Range(1,5000000));
+				List<int> dictUnderTest1Vals = new List<int>();
+				dictUnderTest1Vals.AddRange(Enumerable.Range(5,5000005));
+				Dictionary<int,int> dictUnderTest1 = new Dictionary<int, int>();
+				for(int i=0;i<dictUnderTest1Keys.Count;i++)
+				{
+					dictUnderTest1.Add(dictUnderTest1Keys[i],dictUnderTest1Vals[i]);
+				}
+				startTime = DateTime.Now;
+				var elements2 = dictUnderTest1.Where(e => e.Value%777 ==0);
+				foreach(var element in elements2)
+				{
+					Console.Write(element + " ");
+				}
+				DateTime stopTime = DateTime.Now;
+				
+				Console.WriteLine($"Duration with dictionary: {stopTime-startTime}");
+
+
+				
 
 			}
 		
